@@ -1,0 +1,18 @@
+{
+  "name": "@entropyparadox/reusable-react",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/entropyparadox/reusable-react.git"
+  },
+  "author": "hugme4944@gmail.com",
+  "bugs": {
+    "url": "https://github.com/entropyparadox/reusable-react/issues"
+  },
+  "homepage": "https://github.com/entropyparadox/reusable-react#readme"
+}
