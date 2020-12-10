@@ -1,1 +1,1 @@
-alert("Hello, World!");
+export * from './components';
