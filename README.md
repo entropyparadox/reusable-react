@@ -8,7 +8,7 @@ Martian 팀의 React 프로젝트에 재활용 가능한 컴포넌트 및 유틸
 
 1. GitHub 에 빈 리포지토리를 생성하고 로컬에 클론 받는다.
 
-2. [Create React App](https://create-react-app.dev/) 타입스크립트 템플릿 사용. 프로젝트 루트 경로로 이동하여 다음 명령어를 실행한다.
+2. [Create React App](https://create-react-app.dev) 타입스크립트 템플릿 사용. 프로젝트 루트 경로로 이동하여 다음 명령어를 실행한다.
 
 ```
 npx create-react-app . --template typescript
@@ -32,7 +32,7 @@ npx create-react-app . --template typescript
 }
 ```
 
-### [Tailwind CSS](https://tailwindcss.com/) 세팅.
+### [Tailwind CSS](https://tailwindcss.com) 세팅
 
 1. 아래 명령어를 입력하여 필요한 패키지들을 설치한다.
 
@@ -93,6 +93,8 @@ tailwind.generated.css
 ```
 import './tailwind.generated.css';
 ```
+
+기존의 `index.css` 파일은 삭제해줍니다.
 
 ### vscode 세팅
 
