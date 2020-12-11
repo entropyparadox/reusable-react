@@ -166,6 +166,13 @@ theme: {
     // 해당 프로젝트의 TopNavbar 또는 BottomNavbar 컴포넌트 사이즈
     'fixed-top': '2.75rem',
     'fixed-bottom': '3rem',
+  },
+  fontSize: {
+    '2xs': ['0.625rem', { lineHeight: '1rem' }],
+    '2sm': ['0.8125rem', { lineHeight: '1.125rem' }],
+    lsm: ['0.9375rem', { lineHeight: '1.375rem' }],
+    llg: ['1.0625rem', { lineHeight: '1.625rem' }],
+    '2lg': ['1.1875rem', { lineHeight: '1.875rem' }],
   }
 },
 variants: {
