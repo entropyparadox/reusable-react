@@ -32,6 +32,12 @@ npx create-react-app . --template typescript
 }
 ```
 
+5. `.gitignore` 파일에 다음 내용을 추가한다.
+
+```
+.eslintcache
+```
+
 ### [Tailwind CSS](https://tailwindcss.com) 세팅
 
 1. 아래 명령어를 입력하여 필요한 패키지들을 설치한다.
@@ -112,10 +118,79 @@ import './tailwind.generated.css';
 "editor.defaultFormatter": "esbenp.prettier-vscode",
 ```
 
-### reusable-react 설치
+### reusable-react 세팅
 
-다음 명령어를 이용하여 패키지를 설치한다.
+1. 다음 명령어를 이용하여 패키지를 설치한다.
 
 ```
 npm i @entropyparadox/reusable-react
+```
+
+2. tailwind.config.js 에 다음 항목들을 추가한다.
+
+```
+theme: {
+  colors: {
+    // 해당 프로젝트의 브랜드 컬러
+    'brand-1': '#133132',
+    'brand-2': '#d1ab83',
+  },
+  spacing: {
+    '1/2': '50%',
+    '1/3': '33.333333%',
+    '2/3': '66.666667%',
+    '1/4': '25%',
+    '2/4': '50%',
+    '3/4': '75%',
+    '1/5': '20%',
+    '2/5': '40%',
+    '3/5': '60%',
+    '4/5': '80%',
+    '1/6': '16.666667%',
+    '2/6': '33.333333%',
+    '3/6': '50%',
+    '4/6': '66.666667%',
+    '5/6': '83.333333%',
+    '1/12': '8.333333%',
+    '2/12': '16.666667%',
+    '3/12': '25%',
+    '4/12': '33.333333%',
+    '5/12': '41.666667%',
+    '6/12': '50%',
+    '7/12': '58.333333%',
+    '8/12': '66.666667%',
+    '9/12': '75%',
+    '10/12': '83.333333%',
+    '11/12': '91.666667%',
+    full: '100%',
+    // 해당 프로젝트의 TopNavbar 또는 BottomNavbar 컴포넌트 사이즈
+    'fixed-top': '2.75rem',
+    'fixed-bottom': '3rem',
+  }
+},
+variants: {
+  backgroundColor: [
+    // ...
+    'disabled',
+  ]
+}
+```
+
+3. `src/tailwind.css` 파일에 다음 내용을 추가한다.
+
+```
+@layer base {
+  body {
+    @apply mb-fixed-bottom;
+  }
+  button {
+    @apply focus:outline-none;
+  }
+  input {
+    @apply focus:outline-none;
+  }
+  textarea {
+    @apply focus:outline-none;
+  }
+}
 ```

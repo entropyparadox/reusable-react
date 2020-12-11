@@ -23,7 +23,7 @@ export const TopNavbar: FC<TopNavbarProps> = ({
 
   return (
     <nav
-      className={`sticky top-0 flex items-center px-2 h-11 ${border} bg-white`}
+      className={`sticky top-0 flex items-center px-2 h-fixed-top ${border} bg-white`}
     >
       <div className="flex-1 flex items-center">{leftButton}</div>
       <h1 className="font-bold text-lg text-gray-800">{title}</h1>
