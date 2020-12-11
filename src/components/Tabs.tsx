@@ -1,17 +1,20 @@
 import React, { FC } from 'react';
 
 interface TabsProps {
-  full?: boolean;
-  large?: boolean;
+  padding?: 'p-0' | 'px-3';
+  height?: 'h-10' | 'h-16' | 'h-20';
+  borderless?: boolean;
 }
 
 export const Tabs: FC<TabsProps> = ({
   children,
-  full = false,
-  large = false,
+  padding = 'p-0',
+  height = 'h-10',
+  borderless = false,
 }) => {
-  const padding = full ? '' : 'px-3';
-  const height = large ? 'h-16' : 'h-10';
+  const border = borderless ? 'border-0' : 'border-b';
 
-  return <nav className={`flex ${padding} ${height} border-b`}>{children}</nav>;
+  return (
+    <nav className={`flex ${padding} ${height} ${border}`}>{children}</nav>
+  );
 };

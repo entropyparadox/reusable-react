@@ -19,7 +19,7 @@ export const TopNavbar: FC<TopNavbarProps> = ({
 
   let rightButton = <></>;
 
-  const border = borderless ? '' : 'border-b';
+  const border = borderless ? 'border-0' : 'border-b';
 
   return (
     <nav
