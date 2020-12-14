@@ -1,17 +1,16 @@
-import React, { FC } from 'react';
+import React, { ButtonHTMLAttributes, FC } from 'react';
 
-interface ChipProps {
+interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   margin?: 'm-0' | 'm-1';
   selected?: boolean;
-  onClick?: () => void;
 }
 
 export const Chip: FC<ChipProps> = ({
   text,
   margin = 'm-1',
   selected = false,
-  onClick,
+  ...props
 }) => {
   const backgroundColor = selected ? 'bg-brand-1' : 'bg-gray-50';
   const color = selected ? 'text-white' : 'text-gray-800';
@@ -20,7 +19,7 @@ export const Chip: FC<ChipProps> = ({
     <button
       className={`${margin} px-4 py-2 rounded-full ${backgroundColor}
                   whitespace-nowrap text-msm ${color}`}
-      onClick={onClick}
+      {...props}
     >
       {text}
     </button>

@@ -1,29 +1,27 @@
-import React, { FC } from 'react';
+import React, { ButtonHTMLAttributes, FC } from 'react';
 
-interface BarButtonProps {
-  text: string;
+interface BarButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  text?: string;
   variant?: 'flat' | 'outlined';
   height?: 'h-13' | 'h-12';
-  color?: 'brand-1' | 'gray-800' | 'gray-50' | 'kakao';
-  disabled?: boolean;
-  onClick: () => void;
+  theme?: 'brand-1' | 'gray-800' | 'gray-50' | 'kakao';
 }
 
 export const Button: FC<BarButtonProps> = ({
+  children,
   text,
   variant = 'flat',
   height = 'h-13',
-  color = 'brand-1',
-  disabled = false,
-  onClick,
+  theme = 'brand-1',
+  ...props
 }) => {
-  let border = variant === 'outlined' ? `border border-${color}` : 'border-0';
-  let backgroundColor = variant === 'flat' ? `bg-${color}` : 'bg-white';
-  let textColor = variant === 'flat' ? 'text-white' : `text-${color}`;
-  if (color === 'gray-50') {
+  let border = variant === 'outlined' ? `border border-${theme}` : 'border-0';
+  let backgroundColor = variant === 'flat' ? `bg-${theme}` : 'bg-white';
+  let textColor = variant === 'flat' ? 'text-white' : `text-${theme}`;
+  if (theme === 'gray-50') {
     textColor = 'text-gray-800';
   }
-  if (color === 'kakao') {
+  if (theme === 'kakao') {
     backgroundColor = 'bg-kakao-1';
     textColor = 'text-kakao-2';
   }
@@ -33,10 +31,9 @@ export const Button: FC<BarButtonProps> = ({
       className={`px-6 ${height} ${border} rounded-lg ${backgroundColor}
                   font-bold ${textColor}
                   disabled:border-gray-300 disabled:bg-gray-300 disabled:text-white`}
-      disabled={disabled}
-      onClick={onClick}
+      {...props}
     >
-      {text}
+      {text ?? children}
     </button>
   );
 };

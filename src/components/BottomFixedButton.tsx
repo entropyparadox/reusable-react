@@ -1,24 +1,22 @@
-import React, { FC } from 'react';
+import React, { ButtonHTMLAttributes, FC } from 'react';
 
-interface BottomFixedButtonProps {
-  text: string;
-  disabled?: boolean;
-  onClick: () => void;
+interface BottomFixedButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
+  text?: string;
 }
 
 export const BottomFixedButton: FC<BottomFixedButtonProps> = ({
+  children,
   text,
-  disabled = false,
-  onClick,
+  ...props
 }) => {
   return (
     <button
       className="fixed bottom-0 w-full h-12
                  bg-brand-1 text-white disabled:bg-gray-300"
-      disabled={disabled}
-      onClick={onClick}
+      {...props}
     >
-      {text}
+      {text ?? children}
     </button>
   );
 };

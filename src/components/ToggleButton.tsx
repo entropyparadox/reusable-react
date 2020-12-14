@@ -1,23 +1,22 @@
-import React, { FC } from 'react';
+import React, { ButtonHTMLAttributes, FC } from 'react';
 import { Button } from './Button';
 
-interface ToggleButtonProps {
+interface ToggleButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   active: boolean;
-  onClick: () => void;
 }
 
 export const ToggleButton: FC<ToggleButtonProps> = ({
   text,
   active,
-  onClick,
+  ...props
 }) => {
   return (
     <Button
       text={text}
       height="h-12"
-      color={active ? 'gray-800' : 'gray-50'}
-      onClick={onClick}
+      theme={active ? 'gray-800' : 'gray-50'}
+      {...props}
     />
   );
 };

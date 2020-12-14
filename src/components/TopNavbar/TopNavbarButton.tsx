@@ -1,16 +1,15 @@
-import React, { FC, SVGProps } from 'react';
+import React, { ButtonHTMLAttributes, FC, SVGProps } from 'react';
 
-interface TopNavbarButtonProps {
+interface TopNavbarButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: FC<SVGProps<SVGSVGElement>>;
-  onClick: () => void;
 }
 
 export const TopNavbarButton: FC<TopNavbarButtonProps> = ({
   icon: Icon,
-  onClick,
+  ...props
 }) => {
   return (
-    <button className="w-10 h-10" onClick={onClick}>
+    <button className="w-10 h-10" {...props}>
       <Icon className="m-auto" />
     </button>
   );

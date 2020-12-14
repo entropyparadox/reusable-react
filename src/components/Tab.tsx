@@ -1,11 +1,10 @@
-import React, { FC } from 'react';
+import React, { ButtonHTMLAttributes, FC } from 'react';
 
-interface TabProps {
+interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   full?: boolean;
   color?: 'brand-1' | 'brand-2';
   active: boolean;
-  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 export const Tab: FC<TabProps> = ({
@@ -13,7 +12,7 @@ export const Tab: FC<TabProps> = ({
   full = false,
   color = 'brand-1',
   active,
-  onClick,
+  ...props
 }) => {
   const flex = full ? 'flex-1' : '';
   const padding = full ? '' : 'px-2';
@@ -24,7 +23,7 @@ export const Tab: FC<TabProps> = ({
   return (
     <button
       className={`${flex} flex justify-center items-end ${padding}`}
-      onClick={onClick}
+      {...props}
     >
       <span
         className={`flex items-center px-2 h-10 ${border} border-${color}

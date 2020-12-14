@@ -28,7 +28,8 @@ npx create-react-app . --template typescript
 
 ```
 {
-  "singleQuote": true
+  "singleQuote": true,
+  "trailingComma": "all"
 }
 ```
 
