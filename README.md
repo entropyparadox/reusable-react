@@ -120,13 +120,27 @@ import './tailwind.generated.css';
 
 ### reusable-react 세팅
 
-1. 다음 명령어를 이용하여 패키지를 설치한다.
+1. GitHub [Settings](https://github.com/settings/profile) > [Developer settings](https://github.com/settings/apps) > [Personal access tokens](https://github.com/settings/tokens) 에서 Generate new token 버튼을 눌러 토큰을 생성한다. 토큰을 생성할 때 `write:packages` 체크박스를 선택한다. 생성된 토큰을 클립보드에 복사한다.
+
+2. `~/.npmrc` 파일에 다음 내용을 추가한다. `TOKEN` 자리에 복사한 토큰을 넣는다.
+
+```
+//npm.pkg.github.com/:_authToken=TOKEN
+```
+
+3. 다음 명령어를 입력하여 로그인한다. 로그인할때 패스워드는 복사한 토큰을 그대로 사용한다.
+
+```
+npm login --scope=@entropyparadox --registry=https://npm.pkg.github.com
+```
+
+4. 다음 명령어를 이용하여 패키지를 설치한다.
 
 ```
 npm i @entropyparadox/reusable-react
 ```
 
-2. tailwind.config.js 를 다음과 같이 변경한다.
+5. tailwind.config.js 를 다음과 같이 변경한다.
 
 ```
 const colors = require('tailwindcss/colors');
@@ -144,7 +158,7 @@ module.exports = reusableConfig({
 });
 ```
 
-3. `src/tailwind.css` 파일에 다음 내용을 추가한다.
+6. `src/tailwind.css` 파일에 다음 내용을 추가한다.
 
 ```
 @layer base {
