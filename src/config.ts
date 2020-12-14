@@ -4,6 +4,9 @@ export const reusableConfig = (config: any) => {
   if (config.theme.colors === undefined) config.theme.colors = {};
   if (config.theme.spacing === undefined) config.theme.spacing = {};
   if (config.theme.fontSize === undefined) config.theme.fontSize = {};
+  if (config.theme.truncate === undefined) config.theme.truncate = {};
+  if (config.theme.truncate.lines === undefined)
+    config.theme.truncate.lines = {};
   if (config.variants.backgroundColor === undefined) {
     config.variants.backgroundColor = [];
   }
@@ -11,7 +14,11 @@ export const reusableConfig = (config: any) => {
     config.variants.borderColor = [];
   }
 
-  config.plugins = [...config.plugins, require('@tailwindcss/forms')];
+  config.plugins = [
+    ...config.plugins,
+    require('@tailwindcss/forms'),
+    require('tailwindcss-truncate-multiline')(),
+  ];
 
   config.theme.colors = {
     ...config.theme.colors,
@@ -60,6 +67,14 @@ export const reusableConfig = (config: any) => {
     lsm: ['0.9375rem', { lineHeight: '1.375rem' }],
     llg: ['1.0625rem', { lineHeight: '1.625rem' }],
     '2lg': ['1.1875rem', { lineHeight: '1.875rem' }],
+  };
+
+  config.theme.truncate.lines = {
+    ...config.theme.truncate.lines,
+    2: '2',
+    3: '3',
+    4: '4',
+    5: '5',
   };
 
   config.variants.backgroundColor = [

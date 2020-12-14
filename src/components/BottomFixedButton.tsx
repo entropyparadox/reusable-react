@@ -13,7 +13,7 @@ export const BottomFixedButton: FC<BottomFixedButtonProps> = ({
   ...props
 }) => {
   const backgroundColor = reversed ? 'bg-white' : 'bg-brand-1';
-  const textColor = reversed ? 'bg-brand-1' : 'text-white';
+  const textColor = reversed ? 'text-brand-1' : 'text-white';
 
   return (
     <button
