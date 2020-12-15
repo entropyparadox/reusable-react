@@ -1,4 +1,5 @@
 import React, { FC, InputHTMLAttributes } from 'react';
+import { useId } from 'react-id-generator';
 import { Label } from './Label';
 
 interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -11,11 +12,13 @@ export const TextField: FC<TextFieldProps> = ({
   label,
   ...props
 }) => {
+  const [htmlId] = useId(1, 'textfield');
+
   return (
     <div>
-      {label && <Label text={label} htmlFor={label} />}
+      {label && <Label text={label} htmlFor={htmlId} />}
       <input
-        id={label}
+        id={htmlId}
         type={type}
         className="block px-4 w-full h-12
                    border-gray-200 rounded-md sm:text-sm

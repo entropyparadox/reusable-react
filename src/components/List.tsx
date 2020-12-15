@@ -1,5 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, HTMLAttributes } from 'react';
 
-export const List: FC = ({ children }) => {
-  return <ul className="flex flex-col">{children}</ul>;
+interface ListProps extends HTMLAttributes<HTMLUListElement> {}
+
+export const List: FC<ListProps> = ({ children, ...props }) => {
+  return (
+    <ul className="flex flex-col" {...props}>
+      {children}
+    </ul>
+  );
 };
