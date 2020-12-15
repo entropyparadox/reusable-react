@@ -217,4 +217,38 @@ module.exports = reusableConfig({
 
 ### useIdParam
 
+Get `id` from url param `/posts/:id`
+
+```
+import { useIdParam } from '@entropyparadox/reusable-react';
+
+functions PostPage() {
+  const id = useIdParam();
+  const post = getPostById(id);
+
+  if (!id) return <NotFoundPage />;
+  return (
+    <h1>{post.title}</h1>
+    <p>{post.text}</p>
+  );
+}
+```
+
 ### useQueryParams
+
+Get `ids` from url query `/tag-search?ids=1,3,5`
+
+```
+import { useQueryParams } from '@entropyparadox/reusable-react';
+
+function TagSearchPage() {
+  const { ids } = useQueryParams(); // [1, 3, 5]
+  const tags = getTagsByIds(ids);
+
+  return (
+    {tags.map((tag) => (
+      <Chip key={tag.id} text={tag.name} />
+    ))}
+  );
+}
+```
