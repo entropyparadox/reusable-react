@@ -1,6 +1,7 @@
 export * from './TopNavbar';
 export * from './AspectRatioImage';
 export * from './BottomFixedButton';
+export * from './BottomFixedView';
 export * from './BottomNavbar';
 export * from './BottomNavbarItem';
 export * from './BoxTab';
