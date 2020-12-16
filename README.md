@@ -197,6 +197,135 @@ module.exports = reusableConfig({
 }
 ```
 
+7. `src/index.tsx` 파일에서 `App` 을 `ReusableProvider` 로 감싼다.
+
+```
+import { ReusableProvider } from '@entropyparadox/reusable-react';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <ReusableProvider>
+      <App />
+    </ReusableProvider>
+  </React.StrictMode>,
+  document.getElementById('root'),
+);
+```
+
+## Authentication
+
+### useSignUp(input: any)
+
+회원가입
+
+```
+import { Button, useSignUp } from '@entropyparadox/reusable-react';
+
+function SinUpPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const signUp = useSignUp({ email, password, name });
+
+  return (
+    <Button
+      text="회원가입"
+      disabled={!email || !password || !name}
+      onClick={() => signUp()}
+    />
+  );
+}
+```
+
+### useLogin(email: string, password: string)
+
+로그인
+
+```
+import { Button, useLogin } from '@entropyparadox/reusable-react';
+
+function LoginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const login = useLogin(email, password);
+
+  return (
+    <Button
+      text="로그인"
+      disabled={!email || !password}
+      onClick={() => login()}
+    />
+  );
+}
+```
+
+### useLogout()
+
+로그아웃
+
+```
+import { List, SimpleListItem, useLogout } from '@entropyparadox/reusable-react';
+
+function MyPage() {
+  const logout = useLogout();
+
+  return (
+    <List>
+      <SimpleListItem text="로그아웃" onClick={() => logout()} />
+    </List>
+  );
+}
+```
+
+### AuthRoute
+
+`react-router-dom` 패키지의 `Route` 컴포넌트를 확장한 authentication aware 컴포넌트
+
+```
+import { AuthRoute } from '@entropyparadox/reusable-react';
+import React from 'react';
+import { LoginPage } from './pages/TermsPage';
+import { MyPage } from './pages/TermsPage';
+import { SignUpPage } from './pages/TermsPage';
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <AuthRoute path="/login" component={LoginPage} guestOnly />
+        <AuthRoute path="/signup" component={SignUpPage} guestOnly />
+        <AuthRoute path="/mypage" component={MyPage} />
+        <Route path="/" component={HomePage} />
+      </Switch>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+```
+
+- `<Route path="/" component={HomePage} />` - 아무 제한 없이 모두 접근 가능한 페이지
+- `<AuthRoute path="/mypage" component={MyPage} />` - 로그인한 사용자만 접근 가능한 페이지. 게스트가 접근하려고 하면 `"/login"` 경로로 redirect 된다.
+- `<AuthRoute path="/login" component={LoginPage} guestOnly />` - 게스트만 접근 가능한 페이지. 로그인한 유저가 접근하려고 하면 `"/"` 경로로 redirect 된다.
+
+### useAuth()
+
+로그인했는지 확인할 수 있다.
+
+```
+import { useAuth } from '@entropyparadox/reusable-react';
+
+function GreetingsPage() {
+  const { authenticated } = useAuth();
+
+  return (
+    <>
+      <h1>{authenticated ? '환영합니다' : '로그인이 필요합니다'}</h1>
+    </>
+  );
+}
+```
+
 ## Components
 
 ### TopNavbar
