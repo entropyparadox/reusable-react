@@ -1,5 +1,6 @@
 export * from './TopNavbar';
 export * from './AspectRatioImage';
+export * from './AuthRoute';
 export * from './BottomFixedButton';
 export * from './BottomFixedView';
 export * from './BottomNavbar';

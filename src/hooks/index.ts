@@ -1,5 +1,7 @@
 import queryString from 'query-string';
 import { useLocation, useParams } from 'react-router';
+import { useRecoilValue } from 'recoil';
+import { tokenState } from '../store';
 
 export const useIdParam = () => {
   const params = useParams<{ id: string }>();
@@ -14,4 +16,9 @@ export const useQueryParams = () => {
     parseBooleans: true,
     parseNumbers: true,
   });
+};
+
+export const useAuth = () => {
+  const token = useRecoilValue(tokenState);
+  return { authenticated: token !== null };
 };
