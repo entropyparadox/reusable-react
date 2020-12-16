@@ -9,6 +9,12 @@ Martian 팀의 React 프로젝트에 재활용 가능한 컴포넌트 및 유틸
   - [Tailwind CSS 세팅](#tailwind-css-세팅)
   - [vscode 세팅](#vscode-세팅)
   - [reusable-react 세팅](#reusable-react-세팅)
+- [Authentication](#authentication)
+  - [useSignUp](#usesignup)
+  - [useLogin](#uselogin)
+  - [useLogout](#uselogout)
+  - [AuthRoute](#authroute)
+  - [useAuth](#useauth)
 - [Components](#components)
   - [TopNavbar](#topnavbar)
   - [BottomNavbar](#bottomnavbar)
@@ -214,7 +220,7 @@ ReactDOM.render(
 
 ## Authentication
 
-### useSignUp(input: any)
+### useSignUp
 
 회원가입
 
@@ -237,7 +243,7 @@ function SinUpPage() {
 }
 ```
 
-### useLogin(email: string, password: string)
+### useLogin
 
 로그인
 
@@ -259,7 +265,7 @@ function LoginPage() {
 }
 ```
 
-### useLogout()
+### useLogout
 
 로그아웃
 
@@ -308,7 +314,7 @@ export default App;
 - `<AuthRoute path="/mypage" component={MyPage} />` - 로그인한 사용자만 접근 가능한 페이지. 게스트가 접근하려고 하면 `"/login"` 경로로 redirect 된다.
 - `<AuthRoute path="/login" component={LoginPage} guestOnly />` - 게스트만 접근 가능한 페이지. 로그인한 유저가 접근하려고 하면 `"/"` 경로로 redirect 된다.
 
-### useAuth()
+### useAuth
 
 로그인했는지 확인할 수 있다.
 
