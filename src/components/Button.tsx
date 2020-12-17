@@ -3,8 +3,9 @@ import React, { ButtonHTMLAttributes, FC } from 'react';
 interface BarButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
   variant?: 'flat' | 'outlined';
-  height?: 'h-13' | 'h-12';
-  theme?: 'brand-1' | 'gray-800' | 'gray-50' | 'kakao';
+  height?: 'h-13' | 'h-12' | 'h-11';
+  rounded?: 'rounded-lg' | 'rounded-full';
+  theme?: 'brand-1' | 'brand-2' | 'gray-800' | 'gray-50' | 'kakao';
 }
 
 export const Button: FC<BarButtonProps> = ({
@@ -12,6 +13,7 @@ export const Button: FC<BarButtonProps> = ({
   text,
   variant = 'flat',
   height = 'h-13',
+  rounded = 'rounded-lg',
   theme = 'brand-1',
   ...props
 }) => {
@@ -28,7 +30,7 @@ export const Button: FC<BarButtonProps> = ({
 
   return (
     <button
-      className={`px-6 ${height} ${border} rounded-lg ${backgroundColor}
+      className={`px-6 ${height} ${border} ${rounded} ${backgroundColor}
                   font-bold ${textColor}
                   disabled:border-gray-300 disabled:bg-gray-300 disabled:text-white`}
       {...props}
