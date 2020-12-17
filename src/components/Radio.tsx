@@ -17,10 +17,10 @@ export const Radio: FC<RadioProps> = ({
   return (
     <div className="flex items-center space-x-2">
       <input
+        {...props}
         id={htmlId}
         type="radio"
         className={`focus:${theme} w-4 h-4 text-${theme} border-gray-300`}
-        {...props}
       />
       {label && (
         <Label

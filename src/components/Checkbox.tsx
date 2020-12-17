@@ -17,10 +17,10 @@ export const Checkbox: FC<CheckboxProps> = ({
   return (
     <div className="flex items-center space-x-2">
       <input
+        {...props}
         id={htmlId}
         type="checkbox"
         className={`focus:${theme} w-4 h-4 text-${theme} border-gray-300 rounded`}
-        {...props}
       />
       {label && (
         <Label

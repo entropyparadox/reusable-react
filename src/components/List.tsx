@@ -4,7 +4,7 @@ interface ListProps extends HTMLAttributes<HTMLUListElement> {}
 
 export const List: FC<ListProps> = ({ children, ...props }) => {
   return (
-    <ul className="flex flex-col" {...props}>
+    <ul {...props} className="flex flex-col">
       {children}
     </ul>
   );

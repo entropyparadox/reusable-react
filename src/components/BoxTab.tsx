@@ -19,9 +19,9 @@ export const BoxTab: FC<BoxTabProps> = ({
 
   return (
     <button
+      {...props}
       className={`flex-1 flex flex-col justify-center items-center
                   h-full ${backgroundColor}`}
-      {...props}
     >
       <span className={`font-bold text-sm ${textColor}`}>{text}</span>
       {subText && <span className={`text-xs ${textColor}`}>{subText}</span>}

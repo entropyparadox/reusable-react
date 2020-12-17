@@ -9,7 +9,7 @@ export const TopNavbarButton: FC<TopNavbarButtonProps> = ({
   ...props
 }) => {
   return (
-    <button className="w-10 h-10" {...props}>
+    <button {...props} className="w-10 h-10">
       <Icon className="m-auto" />
     </button>
   );

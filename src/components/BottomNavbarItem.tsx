@@ -19,7 +19,7 @@ export const BottomNavbarItem: FC<BottomNavbarItemProps> = ({
   const iconColor = active ? `text-${color}` : 'text-gray-300';
 
   return (
-    <button className="flex-1 flex flex-col items-center h-12" {...props}>
+    <button {...props} className="flex-1 flex flex-col items-center h-12">
       <Icon className={`fill-current ${iconColor}`} />
       <span className={`font-medium text-2xs ${textColor}`}>{label}</span>
     </button>

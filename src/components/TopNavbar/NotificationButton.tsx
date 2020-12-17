@@ -14,9 +14,9 @@ export const NotificationButton: FC<NotificationButtonProps> = ({
 
   return (
     <TopNavbarButton
+      {...props}
       icon={NotificationIcon}
       onClick={onClick ?? (() => history.push('/notifications'))}
-      {...props}
     />
   );
 };

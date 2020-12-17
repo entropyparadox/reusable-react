@@ -10,9 +10,9 @@ export const BackButton: FC<BackButtonProps> = ({ onClick, ...props }) => {
 
   return (
     <TopNavbarButton
+      {...props}
       icon={BackIcon}
       onClick={onClick ?? (() => history.goBack())}
-      {...props}
     />
   );
 };

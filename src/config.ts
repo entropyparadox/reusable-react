@@ -84,5 +84,7 @@ export const reusableConfig = (config: any) => {
 
   config.variants.borderColor = [...config.variants.borderColor, 'disabled'];
 
+  config.variants.textColor = [...config.variants.textColor, 'disabled'];
+
   return config;
 };

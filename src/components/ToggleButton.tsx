@@ -13,10 +13,10 @@ export const ToggleButton: FC<ToggleButtonProps> = ({
 }) => {
   return (
     <Button
+      {...props}
       text={text}
       height="h-12"
       theme={active ? 'gray-800' : 'gray-50'}
-      {...props}
     />
   );
 };

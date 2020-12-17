@@ -15,6 +15,7 @@ export * from './HorizontalScrollView';
 export * from './Label';
 export * from './List';
 export * from './ListItem';
+export * from './PhoneNumberField';
 export * from './Radio';
 export * from './RadioGroup';
 export * from './ReusableProvider';

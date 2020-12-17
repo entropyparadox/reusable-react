@@ -10,9 +10,9 @@ export const HomeButton: FC<HomeButtonProps> = ({ onClick, ...props }) => {
 
   return (
     <TopNavbarButton
+      {...props}
       icon={HomeIcon}
       onClick={onClick ?? (() => history.push('/'))}
-      {...props}
     />
   );
 };

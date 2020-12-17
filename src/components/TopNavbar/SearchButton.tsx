@@ -10,9 +10,9 @@ export const SearchButton: FC<SearchButtonProps> = ({ onClick, ...props }) => {
 
   return (
     <TopNavbarButton
+      {...props}
       icon={SearchIcon}
       onClick={onClick ?? (() => history.push('/search'))}
-      {...props}
     />
   );
 };

@@ -20,6 +20,10 @@ export const Button: FC<BarButtonProps> = ({
   let border = variant === 'outlined' ? `border border-${theme}` : 'border-0';
   let backgroundColor = variant === 'flat' ? `bg-${theme}` : 'bg-white';
   let textColor = variant === 'flat' ? 'text-white' : `text-${theme}`;
+  let disabledBackgroundColor =
+    variant === 'flat' ? 'bg-gray-300' : backgroundColor;
+  let disabledTextColor = variant === 'flat' ? 'text-white' : 'text-gray-300';
+
   if (theme === 'gray-50') {
     textColor = 'text-gray-800';
   }
@@ -30,10 +34,9 @@ export const Button: FC<BarButtonProps> = ({
 
   return (
     <button
-      className={`px-6 ${height} ${border} ${rounded} ${backgroundColor}
-                  font-bold ${textColor}
-                  disabled:border-gray-300 disabled:bg-gray-300 disabled:text-white`}
       {...props}
+      className={`px-6 ${height} ${border} ${rounded} ${backgroundColor} font-bold ${textColor}
+                  disabled:border-gray-300 disabled:${disabledBackgroundColor} disabled:${disabledTextColor}`}
     >
       {text ?? children}
     </button>

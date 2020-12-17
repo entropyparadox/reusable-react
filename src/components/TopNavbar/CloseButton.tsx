@@ -10,9 +10,9 @@ export const CloseButton: FC<CloseButtonProps> = ({ onClick, ...props }) => {
 
   return (
     <TopNavbarButton
+      {...props}
       icon={CloseIcon}
       onClick={onClick ?? (() => history.goBack())}
-      {...props}
     />
   );
 };
