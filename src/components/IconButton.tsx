@@ -14,7 +14,7 @@ export const IconButton: FC<IconButtonProps> = ({
 }) => {
   const button = (
     <button {...props} className={`w-10 h-10`}>
-      {<Icon /> ?? children}
+      {<Icon className="m-auto" /> ?? children}
     </button>
   );
 
