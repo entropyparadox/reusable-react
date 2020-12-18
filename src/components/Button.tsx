@@ -1,7 +1,9 @@
 import React, { ButtonHTMLAttributes, FC } from 'react';
+import { Link } from 'react-router-dom';
 
 interface BarButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
+  to?: string;
   variant?: 'flat' | 'outlined';
   height?: 'h-13' | 'h-12' | 'h-11';
   rounded?: 'rounded-lg' | 'rounded-full';
@@ -11,6 +13,7 @@ interface BarButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button: FC<BarButtonProps> = ({
   children,
   text,
+  to,
   variant = 'flat',
   height = 'h-13',
   rounded = 'rounded-lg',
@@ -32,7 +35,7 @@ export const Button: FC<BarButtonProps> = ({
     textColor = 'text-kakao-2';
   }
 
-  return (
+  const button = (
     <button
       {...props}
       className={`px-6 ${height} ${border} ${rounded} ${backgroundColor} font-bold ${textColor}
@@ -41,4 +44,6 @@ export const Button: FC<BarButtonProps> = ({
       {text ?? children}
     </button>
   );
+
+  return to ? <Link to={to} children={button} /> : button;
 };
