@@ -1,10 +1,10 @@
 import React, { ButtonHTMLAttributes, FC } from 'react';
-import { ReactComponent as HamburgerIcon } from '../../assets/images/icon-top-navbar-hamburger.svg';
-import { TopNavbarButton } from './TopNavbarButton';
+import { HamburgerIcon } from '../icons';
+import { IconButton } from '../IconButton';
 
 interface HamburgerButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
 export const HamburgerButton: FC<HamburgerButtonProps> = ({ ...props }) => {
-  return <TopNavbarButton {...props} icon={HamburgerIcon} />;
+  return <IconButton {...props} icon={HamburgerIcon} />;
 };

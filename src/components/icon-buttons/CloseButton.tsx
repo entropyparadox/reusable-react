@@ -1,7 +1,7 @@
 import React, { ButtonHTMLAttributes, FC } from 'react';
 import { useHistory } from 'react-router-dom';
-import { ReactComponent as CloseIcon } from '../../assets/images/icon-top-navbar-close.svg';
-import { TopNavbarButton } from './TopNavbarButton';
+import { CloseIcon } from '../icons';
+import { IconButton } from '../IconButton';
 
 interface CloseButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
@@ -9,7 +9,7 @@ export const CloseButton: FC<CloseButtonProps> = ({ onClick, ...props }) => {
   const history = useHistory();
 
   return (
-    <TopNavbarButton
+    <IconButton
       {...props}
       icon={CloseIcon}
       onClick={onClick ?? (() => history.goBack())}
