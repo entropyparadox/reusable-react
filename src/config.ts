@@ -3,6 +3,9 @@ export const reusableConfig = (config: any) => {
   if (config.theme === undefined) config.theme = {};
   if (config.theme.colors === undefined) config.theme.colors = {};
   if (config.theme.spacing === undefined) config.theme.spacing = {};
+  if (config.theme.fontFamily === undefined) config.theme.fontFamily = {};
+  if (config.theme.fontFamily.sans === undefined)
+    config.theme.fontFamily.sans = [];
   if (config.theme.fontSize === undefined) config.theme.fontSize = {};
   if (config.theme.truncate === undefined) config.theme.truncate = {};
   if (config.theme.truncate.lines === undefined)
@@ -59,6 +62,11 @@ export const reusableConfig = (config: any) => {
     'fixed-top': '2.75rem',
     'fixed-bottom': '3rem',
   };
+
+  config.theme.fontFamily.sans = [
+    '"Spoqa Han Sans"',
+    ...config.theme.fontFamily.sans,
+  ];
 
   config.theme.fontSize = {
     ...config.theme.fontSize,
