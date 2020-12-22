@@ -21,6 +21,7 @@ export * from './RadioGroup';
 export * from './ReusableProvider';
 export * from './Screen';
 export * from './Section';
+export * from './Select';
 export * from './SimpleListItem';
 export * from './Tab';
 export * from './Tabs';
