@@ -17,6 +17,7 @@ export * from './icons';
 export * from './Label';
 export * from './List';
 export * from './ListItem';
+export * from './LoadingScreen';
 export * from './PhoneNumberField';
 export * from './Radio';
 export * from './RadioGroup';
