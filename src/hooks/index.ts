@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/client';
 import queryString from 'query-string';
 import { useLocation, useParams } from 'react-router';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
-import { LOGIN, SIGN_UP } from '../api';
+import { LOGIN, SIGNUP } from '../api';
 import { tokenState } from '../store';
 
 export const useIdParam = () => {
@@ -25,9 +25,9 @@ export const useAuth = () => {
   return { authenticated: token !== null };
 };
 
-export const useSignUp = (input: any) => {
+export const useSignup = (input: any) => {
   const setToken = useSetRecoilState(tokenState);
-  const [signUp] = useMutation(SIGN_UP, {
+  const [signup] = useMutation(SIGNUP, {
     variables: { input },
     onCompleted: ({ signup: { token } }) => {
       setToken(token);
@@ -35,7 +35,7 @@ export const useSignUp = (input: any) => {
     onError: (error) => console.error(error),
   });
 
-  return signUp;
+  return signup;
 };
 
 export const useLogin = (email: string, password: string) => {

@@ -10,7 +10,7 @@ Martian 팀의 React 프로젝트에 재활용 가능한 컴포넌트 및 유틸
   - [vscode 세팅](#vscode-세팅)
   - [reusable-react 세팅](#reusable-react-세팅)
 - [Authentication](#authentication)
-  - [useSignUp](#usesignup)
+  - [useSignup](#usesignup)
   - [useLogin](#uselogin)
   - [useLogout](#uselogout)
   - [AuthRoute](#authroute)
@@ -220,24 +220,24 @@ ReactDOM.render(
 
 ## Authentication
 
-### useSignUp
+### useSignup
 
 회원가입
 
 ```
-import { Button, useSignUp } from '@entropyparadox/reusable-react';
+import { Button, useSignup } from '@entropyparadox/reusable-react';
 
 function SinUpPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const signUp = useSignUp({ email, password, name });
+  const signup = useSignup({ email, password, name });
 
   return (
     <Button
       text="회원가입"
       disabled={!email || !password || !name}
-      onClick={() => signUp()}
+      onClick={() => signup()}
     />
   );
 }
@@ -290,16 +290,16 @@ function MyPage() {
 ```
 import { AuthRoute } from '@entropyparadox/reusable-react';
 import React from 'react';
-import { LoginPage } from './pages/TermsPage';
-import { MyPage } from './pages/TermsPage';
-import { SignUpPage } from './pages/TermsPage';
+import { LoginPage } from './pages/LoginPage';
+import { MyPage } from './pages/MyPage';
+import { SignupPage } from './pages/SignupPage';
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
         <AuthRoute path="/login" component={LoginPage} guestOnly />
-        <AuthRoute path="/signup" component={SignUpPage} guestOnly />
+        <AuthRoute path="/signup" component={SignupPage} guestOnly />
         <AuthRoute path="/mypage" component={MyPage} />
         <Route path="/" component={HomePage} />
       </Switch>
