@@ -1,5 +1,5 @@
 import React, { ButtonHTMLAttributes, FC } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 interface BarButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
@@ -18,8 +18,11 @@ export const Button: FC<BarButtonProps> = ({
   height = 'h-13',
   rounded = 'rounded-lg',
   theme = 'brand-1',
+  onClick,
   ...props
 }) => {
+  const history = useHistory();
+
   let border = variant === 'outlined' ? `border border-${theme}` : 'border-0';
   let backgroundColor = variant === 'flat' ? `bg-${theme}` : 'bg-white';
   let textColor = variant === 'flat' ? 'text-white' : `text-${theme}`;
@@ -35,15 +38,14 @@ export const Button: FC<BarButtonProps> = ({
     textColor = 'text-kakao-2';
   }
 
-  const button = (
+  return (
     <button
       {...props}
       className={`px-6 ${height} ${border} ${rounded} ${backgroundColor} font-bold ${textColor}
                   disabled:border-gray-300 disabled:${disabledBackgroundColor} disabled:${disabledTextColor}`}
+      onClick={to ? () => history.push(to) : onClick}
     >
       {text ?? children}
     </button>
   );
-
-  return to ? <Link to={to} children={button} /> : button;
 };
