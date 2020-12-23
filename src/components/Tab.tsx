@@ -3,14 +3,14 @@ import React, { ButtonHTMLAttributes, FC } from 'react';
 interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   full?: boolean;
-  color?: 'brand-1' | 'brand-2';
+  theme?: 'brand-1' | 'brand-2';
   active: boolean;
 }
 
 export const Tab: FC<TabProps> = ({
   text,
   full = false,
-  color = 'brand-1',
+  theme = 'brand-1',
   active,
   ...props
 }) => {
@@ -18,7 +18,7 @@ export const Tab: FC<TabProps> = ({
   const padding = full ? '' : 'px-2';
   const border = active ? 'border-b-2' : '';
   const bold = active ? 'font-bold' : '';
-  const textColor = active ? `text-${color}` : 'text-gray-500';
+  const textColor = active ? `text-${theme}` : 'text-gray-500';
 
   return (
     <button
@@ -26,7 +26,7 @@ export const Tab: FC<TabProps> = ({
       className={`${flex} flex justify-center items-end ${padding}`}
     >
       <span
-        className={`flex items-center px-2 h-10 ${border} border-${color}
+        className={`flex items-center px-2 h-10 ${border} border-${theme}
                     ${bold} text-sm ${textColor}`}
       >
         {text}
