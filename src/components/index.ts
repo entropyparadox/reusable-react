@@ -28,6 +28,7 @@ export * from './Select';
 export * from './SimpleListItem';
 export * from './Tab';
 export * from './Tabs';
+export * from './TextArea';
 export * from './TextField';
 export * from './ToggleButton';
 export * from './TopNavbar';

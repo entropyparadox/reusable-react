@@ -20,8 +20,8 @@ export const TextField: FC<TextFieldProps> = ({
       id={htmlId}
       type={type}
       className="block px-4 w-full h-12
-             border-gray-200 rounded-md sm:text-sm
-             focus:ring-0 focus:border-brand-1 placeholder-gray-400"
+                 border-gray-200 rounded-md sm:text-sm
+                 focus:ring-0 focus:border-brand-1 placeholder-gray-400"
     />
   );
 
