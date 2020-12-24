@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 interface SectionProps {
-  flexDirection?: 'flex-row' | 'flex-col';
+  flexDirection?: 'flex-col' | 'flex-row';
   alignItems?: 'items-stretch' | 'items-center';
 }
 
