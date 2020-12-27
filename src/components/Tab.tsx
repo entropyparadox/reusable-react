@@ -23,7 +23,7 @@ export const Tab: FC<TabProps> = ({
   return (
     <button
       {...props}
-      className={`${flex} flex justify-center items-end ${padding}`}
+      className={`${flex} flex justify-center min-w-max items-end ${padding}`}
     >
       <span
         className={`flex items-center px-2 h-10 ${border} border-${theme}
