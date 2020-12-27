@@ -15,6 +15,8 @@ export const Tabs: FC<TabsProps> = ({
   const border = borderless ? 'border-0' : 'border-b';
 
   return (
-    <nav className={`flex ${padding} ${height} ${border}`}>{children}</nav>
+    <nav className={`flex overflow-x-auto ${padding} ${height} ${border}`}>
+      {children}
+    </nav>
   );
 };
