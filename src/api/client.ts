@@ -1,6 +1,7 @@
-import { ApolloClient, ApolloLink, createHttpLink } from '@apollo/client';
+import { ApolloClient, ApolloLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/link-error';
+import { createUploadLink } from 'apollo-upload-client';
 import fetch from 'cross-fetch';
 import { inMemoryCache } from './cache';
 
@@ -16,12 +17,11 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      Authorization: token ? `Bearer ${token}` : '',
     },
   };
 });
-
-const httpLink = createHttpLink({
+const httpLink = createUploadLink({
   uri: 'http://localhost:8000/graphql',
   fetch,
 });
