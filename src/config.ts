@@ -85,6 +85,22 @@ export const reusableConfig = (config: any) => {
     5: '5',
   };
 
+  config.theme.zIndex = {
+    auto: 'auto',
+    '-10': '-10',
+    0: '0',
+    10: '10',
+    20: '20',
+    30: '30',
+    40: '40',
+    50: '50',
+    60: '60',
+    70: '70',
+    80: '80',
+    90: '90',
+    100: '100',
+  };
+
   config.variants.backgroundColor = [
     ...config.variants.backgroundColor,
     'disabled',

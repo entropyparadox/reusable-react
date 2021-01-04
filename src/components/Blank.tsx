@@ -15,7 +15,7 @@ export const Blank: FC<BlankProps> = ({ text, children }) => {
 
   return (
     <div
-      className="fixed inset-0 w-full h-screen z-30 bg-black opacity-50 flex items-center justify-center"
+      className="fixed inset-0 w-full h-screen z-100 bg-black opacity-50 flex items-center justify-center"
       style={{ height }}
       onClick={e => {
         e.preventDefault();
