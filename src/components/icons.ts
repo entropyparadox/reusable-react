@@ -4,3 +4,4 @@ export { ReactComponent as HamburgerIcon } from '../assets/images/icon-hamburger
 export { ReactComponent as HomeIcon } from '../assets/images/icon-home.svg';
 export { ReactComponent as NotificationIcon } from '../assets/images/icon-notification.svg';
 export { ReactComponent as SearchIcon } from '../assets/images/icon-search.svg';
+export { ReactComponent as AvatarIcon } from '../assets/images/icon-avatar.svg';
