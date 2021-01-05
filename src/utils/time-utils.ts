@@ -18,7 +18,7 @@ export const utcToLocalFromNow = (utc: string) =>
 // time '13:00:00'
 
 export const timeWithoutSeconds = (time: string) =>
-  moment(time, 'hh:mm:ss').format('H:mm'); // 13:00
+  moment(time, 'hh:mm:ss').format('HH:mm'); // 13:00
 
 export const timeWithoutSecondsMeridiem = (time: string) =>
   moment(time, 'hh:mm:ss').format('h:mm a'); // 1:00 오후
