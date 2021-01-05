@@ -52,7 +52,7 @@ export const Avatar: FC<AvatarProps> = ({
         </div>
       );
     } else {
-      innerElement = <AvatarIcon />;
+      innerElement = <AvatarIcon className="h-full w-full text-gray-300" />;
     }
   }
 
