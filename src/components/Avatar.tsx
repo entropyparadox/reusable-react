@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { AvatarIcon } from './icons';
 
 interface AvatarProps {
-  size?: 6 | 8 | 10 | 12 | 14;
+  size?: 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 | 22 | 24;
   type?: 'circular' | 'rounded';
   src?: string;
   placeholder?: string;
@@ -34,7 +34,14 @@ export const Avatar: FC<AvatarProps> = ({
       placeholderSize = 'text-lg';
       break;
     case 14:
+    case 16:
+    case 18:
       placeholderSize = 'text-xl';
+      break;
+    case 20:
+    case 22:
+    case 24:
+      placeholderSize = 'text-2xl';
       break;
   }
 
@@ -69,6 +76,21 @@ export const Avatar: FC<AvatarProps> = ({
       break;
     case 14:
       notificationSize = 'h-3.5 w-3.5';
+      break;
+    case 16:
+      notificationSize = 'h-4 w-4';
+      break;
+    case 18:
+      notificationSize = 'h-4.5 w-4.5';
+      break;
+    case 20:
+      notificationSize = 'h-5 w-5';
+      break;
+    case 22:
+      notificationSize = 'h-5.5 w-5.5';
+      break;
+    case 24:
+      notificationSize = 'h-6 w-6';
       break;
   }
 
