@@ -15,7 +15,10 @@ export const Tabs: FC<TabsProps> = ({
   const border = borderless ? 'border-0' : 'border-b';
 
   return (
-    <nav className={`flex overflow-x-auto pb-2 ${padding} ${height} ${border}`}>
+    <nav
+      className={`flex overflow-x-auto ${padding} ${height} ${border}`}
+      style={{ msOverflowStyle: 'none', scrollbarWidth: 'none' }}
+    >
       {children}
     </nav>
   );
