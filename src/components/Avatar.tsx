@@ -52,13 +52,11 @@ export const Avatar: FC<AvatarProps> = ({
   if (!src) {
     if (placeholder) {
       innerElement = (
-        <div className="h-full w-full flex items-center justify-center">
-          <span
-            className={`${placeholderSize} font-medium leading-none text-white`}
-          >
-            {placeholder}
-          </span>
-        </div>
+        <span
+          className={`${placeholderSize} font-medium leading-none text-white`}
+        >
+          {placeholder}
+        </span>
       );
     } else {
       innerElement = <AvatarIcon className="h-full w-full text-gray-300" />;
@@ -109,9 +107,17 @@ export const Avatar: FC<AvatarProps> = ({
   return (
     <span
       style={src ? { backgroundImage: `url(${src})` } : {}}
-      className={`inline-block ${widthheight} ${rounded} relative overflow-hidden bg-center bg-no-repeat bg-cover ${backgroundColor}`}
+      className={`inline-block ${widthheight} ${rounded} relative bg-center bg-no-repeat bg-cover ${backgroundColor}`}
     >
-      {innerElement}
+      {innerElement ? (
+        <div
+          className={`h-full w-full ${rounded} overflow-hidden flex items-center justify-center`}
+        >
+          {innerElement}
+        </div>
+      ) : (
+        ''
+      )}
       {notification && notificationElement}
     </span>
   );
