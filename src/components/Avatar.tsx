@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { AvatarIcon } from './icons';
 
 interface AvatarProps {
@@ -7,7 +7,8 @@ interface AvatarProps {
   src?: string;
   placeholder?: string;
   notification?: 'top' | 'bottom';
-  notificationColor?: 'gray-300' | 'red-400' | 'green-400';
+  notificationColor?: 'gray-300' | 'red-400' | 'green-400' | string;
+  notificationImg?: ReactElement;
 }
 
 export const Avatar: FC<AvatarProps> = ({
@@ -17,6 +18,7 @@ export const Avatar: FC<AvatarProps> = ({
   src,
   notification,
   notificationColor = 'gray-300',
+  notificationImg,
 }) => {
   let widthheight = `w-${size} h-${size}`;
   let rounded = type === 'circular' ? 'rounded-full' : 'rounded-md';
@@ -97,7 +99,11 @@ export const Avatar: FC<AvatarProps> = ({
   let notificationElement = (
     <span
       className={`absolute ${notification}-0 right-0 block ${notificationSize} rounded-full ring-2 ring-white bg-${notificationColor}`}
-    ></span>
+    >
+      <div className="w-full h-full flex items-center justify-center">
+        {notificationImg}
+      </div>
+    </span>
   );
 
   return (
