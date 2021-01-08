@@ -1,7 +1,8 @@
 import React, { ButtonHTMLAttributes, FC } from 'react';
 import { useHistory } from 'react-router-dom';
 
-interface BarButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface BarButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
   to?: string;
   variant?: 'flat' | 'outlined';

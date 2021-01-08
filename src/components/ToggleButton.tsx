@@ -1,7 +1,7 @@
 import React, { ButtonHTMLAttributes, FC } from 'react';
-import { Button } from './Button';
+import { BarButtonProps, Button } from './Button';
 
-interface ToggleButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ToggleButtonProps extends BarButtonProps {
   text: string;
   active: boolean;
 }
