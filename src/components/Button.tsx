@@ -8,6 +8,7 @@ export interface BarButtonProps
   variant?: 'flat' | 'outlined';
   height?: 'h-13' | 'h-12' | 'h-11' | 'h-8';
   rounded?: 'rounded' | 'rounded-lg' | 'rounded-full';
+  fontSize?: 'text-xs' | 'text-sm' | 'text-base';
   theme?: 'brand-1' | 'brand-2' | 'gray-800' | 'gray-50' | 'kakao';
 }
 
@@ -18,6 +19,7 @@ export const Button: FC<BarButtonProps> = ({
   variant = 'flat',
   height = 'h-13',
   rounded = 'rounded-lg',
+  fontSize = 'text-base',
   theme = 'brand-1',
   onClick,
   ...props
@@ -42,7 +44,7 @@ export const Button: FC<BarButtonProps> = ({
   return (
     <button
       {...props}
-      className={`px-6 ${height} ${border} ${rounded} ${backgroundColor} font-bold ${textColor}
+      className={`px-6 ${height} ${border} ${rounded} ${backgroundColor} font-bold ${fontSize} ${textColor}
                   disabled:border-gray-300 disabled:${disabledBackgroundColor} disabled:${disabledTextColor}`}
       onClick={to ? () => history.push(to) : onClick}
     >
