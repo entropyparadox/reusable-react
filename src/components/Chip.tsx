@@ -19,7 +19,7 @@ export const Chip: FC<ChipProps> = ({
     <button
       {...props}
       className={`${margin} px-4 py-2 rounded-full ${backgroundColor}
-                  whitespace-nowrap text-msm ${color}`}
+                  whitespace-nowrap text-2sm ${color}`}
     >
       {text}
     </button>
