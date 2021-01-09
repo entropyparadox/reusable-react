@@ -63,40 +63,13 @@ export const Avatar: FC<AvatarProps> = ({
     }
   }
 
-  let notificationSize = 'h-1.5 w-1.5';
-  switch (size) {
-    case 8:
-      notificationSize = 'h-2 w-2';
-      break;
-    case 10:
-      notificationSize = 'h-2.5 w-2.5';
-      break;
-    case 12:
-      notificationSize = 'h-3 w-3';
-      break;
-    case 14:
-      notificationSize = 'h-3.5 w-3.5';
-      break;
-    case 16:
-      notificationSize = 'h-4 w-4';
-      break;
-    case 18:
-      notificationSize = 'h-4.5 w-4.5';
-      break;
-    case 20:
-      notificationSize = 'h-5 w-5';
-      break;
-    case 22:
-      notificationSize = 'h-5.5 w-5.5';
-      break;
-    case 24:
-      notificationSize = 'h-6 w-6';
-      break;
-  }
+  let notificationSize = size / 4;
 
   let notificationElement = (
     <span
-      className={`absolute ${notification}-0 right-0 block ${notificationSize} rounded-full ring-2 ring-white bg-${notificationColor}`}
+      className={`absolute ${notification}-0 right-0 block
+                  w-${notificationSize} h-${notificationSize} rounded-full ring-2 ring-white
+                  bg-${notificationColor}`}
     >
       <div className="w-full h-full flex items-center justify-center">
         {notificationImg}
