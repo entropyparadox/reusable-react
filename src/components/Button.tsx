@@ -6,8 +6,8 @@ export interface BarButtonProps
   text?: string;
   to?: string;
   variant?: 'flat' | 'outlined';
-  height?: 'h-13' | 'h-12' | 'h-11';
-  rounded?: 'rounded-lg' | 'rounded-full';
+  height?: 'h-13' | 'h-12' | 'h-11' | 'h-8';
+  rounded?: 'rounded' | 'rounded-lg' | 'rounded-full';
   theme?: 'brand-1' | 'brand-2' | 'gray-800' | 'gray-50' | 'kakao';
 }
 
