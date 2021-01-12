@@ -1,9 +1,16 @@
 import React, { FC } from 'react';
 
-export const HorizontalScrollView: FC = ({ children }) => {
+interface HorizontalScrollViewProps {
+  marginY?: 'my-0' | 'my-4';
+}
+
+export const HorizontalScrollView: FC<HorizontalScrollViewProps> = ({
+  children,
+  marginY = 'my-0',
+}) => {
   return (
     <div
-      className="overflow-x-auto"
+      className={`${marginY} overflow-x-auto`}
       style={{ msOverflowStyle: 'none', scrollbarWidth: 'none' }}
     >
       <div className="inline-block">
