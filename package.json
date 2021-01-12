@@ -1,6 +1,6 @@
 {
   "name": "@entropyparadox/reusable-react",
-  "version": "0.0.135",
+  "version": "0.0.136",
   "description": "Martian 팀의 React 프로젝트에 재활용 가능한 컴포넌트 및 유틸리티들을 모아둔 라이브러리 입니다.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",

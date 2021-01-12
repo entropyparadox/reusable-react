@@ -8,6 +8,7 @@ interface AspectRatioImageProps {
 }
 
 export const AspectRatioImage: FC<AspectRatioImageProps> = ({
+  children,
   src,
   alt,
   pb,
@@ -20,6 +21,7 @@ export const AspectRatioImage: FC<AspectRatioImageProps> = ({
         src={src}
         alt={alt}
       />
+      {children}
     </div>
   );
 };
