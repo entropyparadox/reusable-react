@@ -12,7 +12,7 @@ export const Chip: FC<ChipProps> = ({
   selected = false,
   ...props
 }) => {
-  const backgroundColor = selected ? 'bg-brand-1' : 'bg-gray-50';
+  const backgroundColor = selected ? 'bg-brand-1' : 'bg-gray-100';
   const color = selected ? 'text-white' : 'text-gray-800';
 
   return (
