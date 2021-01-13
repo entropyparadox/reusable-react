@@ -32,9 +32,8 @@ export const SearchField: FC<SearchFieldProps> = ({
         onChange={onChange}
       />
       {value && (
-        <div className="-mr-2">
-          <IconButton
-            icon={SearchCloseIcon}
+        <div className="flex justify-center items-center -mr-2 w-10 h-10">
+          <SearchCloseIcon
             onClick={() => {
               Object.getOwnPropertyDescriptor(
                 window.HTMLInputElement.prototype,
