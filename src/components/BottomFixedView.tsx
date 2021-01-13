@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 interface BottomFixedViewProps {
-  backgroundColor?: 'bg-white' | 'bg-gray-200';
+  backgroundColor?: 'bg-white' | 'bg-gray-100' | 'bg-gray-200';
 }
 
 export const BottomFixedView: FC<BottomFixedViewProps> = ({
