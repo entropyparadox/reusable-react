@@ -5,6 +5,7 @@ interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   full?: boolean;
   theme?: 'brand-1' | 'brand-2';
   active: boolean;
+  fontSize?: 'text-sm' | 'text-base' | 'text-lg' | 'text-xl';
 }
 
 export const Tab: FC<TabProps> = ({
@@ -12,6 +13,7 @@ export const Tab: FC<TabProps> = ({
   full = false,
   theme = 'brand-1',
   active,
+  fontSize = 'text-sm',
   ...props
 }) => {
   const flex = full ? 'flex-1' : '';
@@ -27,7 +29,7 @@ export const Tab: FC<TabProps> = ({
     >
       <span
         className={`flex items-center px-2 h-10 ${border} border-${theme}
-                    ${bold} text-sm ${textColor}`}
+                    ${bold} ${fontSize} ${textColor}`}
       >
         {text}
       </span>
