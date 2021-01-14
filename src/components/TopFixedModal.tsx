@@ -18,7 +18,7 @@ export const TopFixedModal: FC<TopFixedModalProps> = ({
         isOpen
           ? 'z-100 opacity-100 scale-100 duration-100 ease-in'
           : '-z-10 opacity-0 scale-95 duration-200 ease-out'
-      } fixed top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden`}
+      } fixed top-0 inset-x-0 p-2 transition transform origin-top-right`}
     >
       <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
         <div className="pt-5 pb-6 px-5">
