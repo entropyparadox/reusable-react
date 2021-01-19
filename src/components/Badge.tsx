@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 
 interface BadgeProps {
   size?: 'basic' | 'large';
+  text?: string;
   removeButton?: boolean;
   backgroundColor?:
     | 'bg-gray-100'
@@ -29,6 +30,7 @@ interface BadgeProps {
 export const Badge: FC<BadgeProps> = ({
   children,
   size = 'basic',
+  text,
   removeButton = false,
   backgroundColor = 'bg-gray-100',
   textColor = 'text-gray-800',
@@ -41,7 +43,7 @@ export const Badge: FC<BadgeProps> = ({
     <span
       className={`inline-flex items-center ${badgeSize} rounded-full font-medium ${backgroundColor} ${textColor} ${backgroundColor}`}
     >
-      {children}
+      {text ?? children}
       {removeButton ? (
         <svg
           className="h-2 w-2"

@@ -3,6 +3,9 @@ import 'moment/locale/ko';
 
 // UTC '2021-01-05T07:52:33.981Z'
 
+export const utcToLocalFormat = (utc: string, format?: string) =>
+  moment.utc(utc).local().format(format);
+
 export const utcToLocalDatetime = (utc: string) =>
   moment.utc(utc).local().format('YYYY.MM.DD H:mm'); // 2021.01.05 16:52
 
