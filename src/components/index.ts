@@ -33,6 +33,7 @@ export * from './SearchField';
 export * from './Section';
 export * from './Select';
 export * from './SimpleListItem';
+export * from './StickyToTop';
 export * from './Tab';
 export * from './Tabs';
 export * from './TextArea';

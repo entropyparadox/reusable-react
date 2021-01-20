@@ -9,6 +9,7 @@ interface AvatarProps {
   notification?: 'top' | 'bottom';
   notificationColor?: 'gray-300' | 'red-400' | 'green-400' | string;
   notificationImg?: ReactElement;
+  onClick?: () => void;
 }
 
 export const Avatar: FC<AvatarProps> = ({
@@ -19,6 +20,7 @@ export const Avatar: FC<AvatarProps> = ({
   notification,
   notificationColor = 'gray-300',
   notificationImg,
+  onClick,
 }) => {
   let widthheight = `w-${size} h-${size}`;
   let rounded = type === 'circular' ? 'rounded-full' : 'rounded-md';
@@ -81,16 +83,13 @@ export const Avatar: FC<AvatarProps> = ({
     <span
       style={src ? { backgroundImage: `url(${src})` } : {}}
       className={`inline-block ${widthheight} ${rounded} relative bg-center bg-no-repeat bg-cover ${backgroundColor}`}
+      onClick={onClick}
     >
-      {innerElement ? (
-        <div
-          className={`h-full w-full ${rounded} overflow-hidden flex items-center justify-center`}
-        >
-          {innerElement}
-        </div>
-      ) : (
-        ''
-      )}
+      <div
+        className={`h-full w-full ${rounded} overflow-hidden flex items-center justify-center`}
+      >
+        {innerElement}
+      </div>
       {notification && notificationElement}
     </span>
   );
