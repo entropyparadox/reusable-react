@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, HTMLAttributes } from 'react';
 import { use100vh } from 'react-div-100vh';
 
-interface ScreenProps {
+interface ScreenProps extends HTMLAttributes<HTMLDivElement> {
   top?: boolean;
   bottom?: boolean;
 }
@@ -10,6 +10,7 @@ export const Screen: FC<ScreenProps> = ({
   children,
   top = false,
   bottom = false,
+  ...props
 }) => {
   let vh = use100vh();
   const screenHeight = vh ? `${vh}px` : '100vh';
@@ -25,7 +26,7 @@ export const Screen: FC<ScreenProps> = ({
   }
 
   return (
-    <div className="flex flex-col" style={{ height }}>
+    <div {...props} className="flex flex-col" style={{ height }}>
       {children}
     </div>
   );
