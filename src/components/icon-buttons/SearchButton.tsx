@@ -8,7 +8,7 @@ export const SearchButton: FC<SearchButtonProps> = ({ onClick, ...props }) => {
   return (
     <IconButton
       {...props}
-      icon={SearchIcon}
+      icon={<SearchIcon />}
       to={onClick ? undefined : '/search'}
       onClick={onClick}
     />

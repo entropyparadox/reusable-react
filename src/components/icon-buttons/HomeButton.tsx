@@ -8,7 +8,7 @@ export const HomeButton: FC<HomeButtonProps> = ({ onClick, ...props }) => {
   return (
     <IconButton
       {...props}
-      icon={HomeIcon}
+      icon={<HomeIcon />}
       to={onClick ? undefined : '/'}
       onClick={onClick}
     />

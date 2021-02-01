@@ -12,7 +12,7 @@ export const NotificationButton: FC<NotificationButtonProps> = ({
   return (
     <IconButton
       {...props}
-      icon={NotificationIcon}
+      icon={<NotificationIcon />}
       to={onClick ? undefined : '/notifications'}
       onClick={onClick}
     />

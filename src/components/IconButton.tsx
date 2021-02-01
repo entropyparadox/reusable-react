@@ -1,20 +1,20 @@
-import React, { ButtonHTMLAttributes, FC, SVGProps } from 'react';
+import React, { ButtonHTMLAttributes, FC, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  icon: FC<SVGProps<SVGSVGElement>>;
+  icon?: ReactElement;
   to?: string;
 }
 
 export const IconButton: FC<IconButtonProps> = ({
   children,
-  icon: Icon,
+  icon,
   to,
   ...props
 }) => {
   const button = (
     <button {...props} className={`w-10 h-10`}>
-      {<Icon className="m-auto" /> ?? children}
+      {icon ?? children}
     </button>
   );
 
