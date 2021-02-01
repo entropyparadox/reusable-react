@@ -13,7 +13,7 @@ export const IconButton: FC<IconButtonProps> = ({
   ...props
 }) => {
   const button = (
-    <button {...props} className={`w-10 h-10`}>
+    <button {...props} className="flex justify-center items-center w-10 h-10">
       {icon ?? children}
     </button>
   );
