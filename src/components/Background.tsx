@@ -5,9 +5,12 @@ interface BackgroundProps {
 }
 
 export const Background: FC<BackgroundProps> = ({
+  children,
   backgroundColor = 'white',
 }) => {
   return (
-    <div className={`fixed w-screen h-screen -z-10 bg-${backgroundColor}`} />
+    <div className={`fixed w-screen h-screen -z-10 bg-${backgroundColor}`}>
+      {children}
+    </div>
   );
 };
