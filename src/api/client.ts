@@ -29,4 +29,9 @@ const httpLink = createUploadLink({
 export const client = new ApolloClient({
   link: ApolloLink.from([errorLink, authLink, httpLink]),
   cache: inMemoryCache,
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'cache-and-network',
+    },
+  },
 });
