@@ -5,6 +5,12 @@ import { createUploadLink } from 'apollo-upload-client';
 import fetch from 'cross-fetch';
 import { inMemoryCache } from './cache';
 
+const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const uri =
+  baseUrl.charAt(baseUrl.length - 1) === '/'
+    ? baseUrl + 'graphql'
+    : baseUrl + '/graphql';
+
 const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors?.some((error) => error.message === 'Unauthorized')) {
     localStorage.clear();
@@ -21,10 +27,8 @@ const authLink = setContext((_, { headers }) => {
     },
   };
 });
-const httpLink = createUploadLink({
-  uri: process.env.REACT_APP_API_URL || 'http://localhost:8000/graphql',
-  fetch,
-});
+
+const httpLink = createUploadLink({ uri, fetch });
 
 export const client = new ApolloClient({
   link: ApolloLink.from([errorLink, authLink, httpLink]),
