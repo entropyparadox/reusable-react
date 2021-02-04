@@ -22,4 +22,4 @@ export const utcToLocalFromNow = (utc: string) =>
   moment.utc(utc).local().fromNow(); // 한 시간 전
 
 export const utcToDaysFromNow = (utc: string) =>
-  moment.utc(moment.utc(new Date().toUTCString())).diff(utc, 'days');
+  moment.utc(moment.utc(utc)).diff(new Date().toUTCString(), 'days');
