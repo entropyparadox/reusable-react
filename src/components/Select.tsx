@@ -13,15 +13,13 @@ export const Select: FC<SelectProps> = ({ label, children, ...props }) => {
   return (
     <div>
       {label && <Label text={label} htmlFor={htmlId} />}
-      <div className="p-4 rounded-lg w-full border-2 border-gray-800 my-1 focus-within:border-brand-1">
-        <select
-          {...props}
-          id={htmlId}
-          className="outline-none w-full bg-gray-8 flex items-center text-lg text-gray-1 appearance-none rounded-none border-none focus:appearance-none focus:border-none focus-within:appearance-none focus-within:border-none"
-        >
-          {children}
-        </select>
-      </div>
+      <select
+        {...props}
+        id={htmlId}
+        className="outline-none block px-4 w-full h-12 border border-gray-200 rounded-md sm:text-sm focus:ring-0 focus:border-brand-1 placeholder-gray-400 appearance-none rounded-none focus:appearance-none focus:no-underline focus:outline-none"
+      >
+        {children}
+      </select>
     </div>
   );
 };
