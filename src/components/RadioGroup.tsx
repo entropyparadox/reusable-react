@@ -26,12 +26,14 @@ export const RadioGroup: FC<RadioGroupProps> = ({
   return (
     <div {...props}>
       {label && <Label text={label} />}
-      {Children.map(children, (child) => {
-        if (isValidElement(child) && child.type === Radio) {
-          return cloneElement(child, { name, onChange });
-        }
-        return child;
-      })}
+      <div>
+        {Children.map(children, (child) => {
+          if (isValidElement(child) && child.type === Radio) {
+            return cloneElement(child, { name, onChange });
+          }
+          return child;
+        })}
+      </div>
     </div>
   );
 };
