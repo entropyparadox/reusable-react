@@ -8,27 +8,19 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   className?: string;
 }
 
-export const Select: FC<SelectProps> = ({
-  label,
-  className,
-  children,
-  ...props
-}) => {
+export const Select: FC<SelectProps> = ({ label, children, ...props }) => {
   const [htmlId] = useId(1, 'select');
   return (
     <div>
       {label && <Label text={label} htmlFor={htmlId} />}
-      <div
-        className={`flex items-center p-4 rounded-lg w-full border-2 border-gray-800 my-1 focus-within:border-brand-1 ${className}`}
-      >
+      <div className="p-4 rounded-lg w-full border-2 border-gray-800 my-1 focus-within:border-brand-1">
         <select
           {...props}
           id={htmlId}
-          className="outline-none w-full bg-gray-8 flex items-center text-lg text-gray-1 appearance-none rounded-none border-none"
+          className="outline-none w-full bg-gray-8 flex items-center text-lg text-gray-1 appearance-none rounded-none border-none focus:appearance-none focus:border-none focus-within:appearance-none focus-within:border-none"
         >
           {children}
         </select>
-        <ArrowDown />
       </div>
     </div>
   );
