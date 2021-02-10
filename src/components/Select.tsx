@@ -1,55 +1,35 @@
 import React, { useState, SelectHTMLAttributes, FC } from 'react';
+import { useId } from 'react-id-generator';
+import { Label } from '.';
 import { ReactComponent as ArrowDown } from '../assets/images/select-arrow-down.svg';
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+  label?: string;
   className?: string;
-  placeholder?: string;
-  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export const Select: FC<SelectProps> = ({
+  label,
   className,
-  placeholder,
-  onChange,
   children,
   ...props
 }) => {
-  let onChangeHandler;
-  let [isPlaceHolder, setPlaceHolder] = useState(true);
-
-  if (onChange) {
-    onChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      onChange(e);
-      setPlaceHolder(e.target.value === undefined);
-    };
-  } else {
-    onChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      setPlaceHolder(e.target.value === undefined);
-    };
-  }
+  const [htmlId] = useId(1, 'select');
   return (
-    <div
-      className={`flex items-center p-4 rounded-lg bg-gray-50 w-full border-2 border-gray-800 my-1 focus-within:border-brand-1 ${className}`}
-    >
-      <select
-        className={
-          isPlaceHolder
-            ? 'outline-none w-full bg-gray-8 flex items-center text-lg text-gray-4'
-            : 'outline-none w-full bg-gray-8 flex items-center text-lg text-gray-1'
-        }
-        onChange={onChangeHandler}
-        {...props}
+    <div>
+      {label && <Label text={label} htmlFor={htmlId} />}
+      <div
+        className={`flex items-center p-4 rounded-lg bg-gray-50 w-full border-2 border-gray-800 my-1 focus-within:border-brand-1 ${className}`}
       >
-        {placeholder ? (
-          <option value={undefined} selected disabled hidden>
-            {placeholder}
-          </option>
-        ) : (
-          ''
-        )}
-        {children}
-      </select>
-      <ArrowDown />
+        <select
+          {...props}
+          id={htmlId}
+          className="outline-none w-full bg-gray-8 flex items-center text-lg text-gray-1 appearance-none rounded-none"
+        >
+          {children}
+        </select>
+        <ArrowDown />
+      </div>
     </div>
   );
 };

@@ -9,7 +9,14 @@ export interface BarButtonProps
   height?: 'h-13' | 'h-12' | 'h-11' | 'h-8';
   rounded?: 'rounded' | 'rounded-lg' | 'rounded-full';
   fontSize?: 'text-xs' | 'text-sm' | 'text-base';
-  theme?: 'brand-1' | 'brand-2' | 'black' | 'gray-800' | 'gray-50' | 'kakao';
+  theme?:
+    | 'brand-1'
+    | 'brand-2'
+    | 'black'
+    | 'gray-800'
+    | 'gray-300'
+    | 'gray-50'
+    | 'kakao';
 }
 
 export const Button: FC<BarButtonProps> = ({
