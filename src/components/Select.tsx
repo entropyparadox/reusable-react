@@ -19,12 +19,12 @@ export const Select: FC<SelectProps> = ({
     <div>
       {label && <Label text={label} htmlFor={htmlId} />}
       <div
-        className={`flex items-center p-4 rounded-lg bg-gray-50 w-full border-2 border-gray-800 my-1 focus-within:border-brand-1 ${className}`}
+        className={`flex items-center p-4 rounded-lg w-full border-2 border-gray-800 my-1 focus-within:border-brand-1 ${className}`}
       >
         <select
           {...props}
           id={htmlId}
-          className="outline-none w-full bg-gray-8 flex items-center text-lg text-gray-1 appearance-none rounded-none"
+          className="outline-none w-full bg-gray-8 flex items-center text-lg text-gray-1 appearance-none rounded-none border-none"
         >
           {children}
         </select>
