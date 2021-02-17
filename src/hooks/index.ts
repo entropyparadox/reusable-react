@@ -2,8 +2,8 @@ import { useMutation } from '@apollo/client';
 import queryString from 'query-string';
 import { useLocation, useParams } from 'react-router';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
-import { LOGIN, SIGNUP } from '../api';
-import { tokenState } from '../store';
+import { Login, LoginWithKakao, Signup } from '../api';
+import { kakaoIdState, tokenState } from '../store';
 
 export const useIdParam = () => {
   const params = useParams<{ id: string }>();
@@ -27,7 +27,7 @@ export const useAuth = () => {
 
 export const useSignup = (input: any) => {
   const setToken = useSetRecoilState(tokenState);
-  const [signup] = useMutation(SIGNUP, {
+  const [signup] = useMutation(Signup, {
     variables: { input },
     onCompleted: ({ signup: { token } }) => {
       setToken(token);
@@ -40,7 +40,7 @@ export const useSignup = (input: any) => {
 
 export const useLogin = (email: string, password: string) => {
   const setToken = useSetRecoilState(tokenState);
-  const [login] = useMutation(LOGIN, {
+  const [login] = useMutation(Login, {
     variables: { email, password },
     onCompleted: ({ login: { token } }) => {
       setToken(token);
@@ -51,6 +51,36 @@ export const useLogin = (email: string, password: string) => {
   return login;
 };
 
+export const useLoginWithKakao = () => {
+  const setToken = useSetRecoilState(tokenState);
+  const setKakaoId = useSetRecoilState(kakaoIdState);
+  const [loginWithKakao] = useMutation(LoginWithKakao, {
+    onCompleted: ({ loginWithKakao: { token, kakaoId } }) => {
+      if (token) {
+        setToken(token);
+      } else {
+        setKakaoId(kakaoId);
+      }
+    },
+    onError: (error) => console.error(error),
+  });
+
+  return () =>
+    // @ts-ignore
+    Kakao.Auth.login({
+      success: (response: any) => {
+        loginWithKakao({
+          variables: { accessToken: response.access_token },
+        });
+      },
+    });
+};
+
 export const useLogout = () => {
-  return useResetRecoilState(tokenState);
+  const resetToken = useResetRecoilState(tokenState);
+  const resetKakaoId = useResetRecoilState(kakaoIdState);
+  return () => {
+    resetToken();
+    resetKakaoId();
+  };
 };

@@ -19,3 +19,8 @@ export const tokenState = atom<string | null>({
   default: null,
   effects_UNSTABLE: [localStorageEffect('token')],
 });
+
+export const kakaoIdState = atom<number | null>({
+  key: 'kakaoIdState',
+  default: null,
+});
