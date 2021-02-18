@@ -1,6 +1,6 @@
 import React, { FC, HTMLAttributes, ReactElement } from 'react';
 
-interface TopNavbarProps extends HTMLAttributes<HTMLElement> {
+interface TopNavbarProps {
   title?: string;
   left?: ReactElement;
   right?: ReactElement;
@@ -9,6 +9,7 @@ interface TopNavbarProps extends HTMLAttributes<HTMLElement> {
   backgroundColor?: 'transparent' | 'white';
   leftFlex?: 'flex-1' | 'flex-none';
   rightFlex?: 'flex-1' | 'flex-none';
+  style?: any;
 }
 
 export const TopNavbar: FC<TopNavbarProps> = ({
@@ -20,7 +21,7 @@ export const TopNavbar: FC<TopNavbarProps> = ({
   backgroundColor = 'white',
   leftFlex = 'flex-1',
   rightFlex = 'flex-1',
-  ...props
+  style,
 }) => {
   const positionAdditional =
     position === 'sticky' ? 'top-0' : 'top-0 left-0 right-0';
@@ -28,9 +29,9 @@ export const TopNavbar: FC<TopNavbarProps> = ({
 
   return (
     <nav
-      {...props}
       className={`${position} ${positionAdditional} z-50 flex items-center
                   px-2 h-fixed-top ${border} bg-${backgroundColor}`}
+      style={style}
     >
       <div className={`${leftFlex} flex items-center`}>{left}</div>
       <h1 className="font-bold text-gray-800">{title}</h1>
