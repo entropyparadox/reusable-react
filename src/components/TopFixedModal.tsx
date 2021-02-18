@@ -1,6 +1,6 @@
-import React, { FC, ReactElement } from 'react';
+import React, { HTMLAttributes, FC, ReactElement } from 'react';
 
-interface TopFixedModalProps {
+interface TopFixedModalProps extends HTMLAttributes<HTMLDivElement> {
   isOpen: boolean;
   setClose: () => void;
   header?: ReactElement;
@@ -11,9 +11,11 @@ export const TopFixedModal: FC<TopFixedModalProps> = ({
   setClose,
   header,
   children,
+  ...props
 }) => {
   return (
     <div
+      {...props}
       className={`${
         isOpen
           ? 'z-100 opacity-100 scale-100 duration-100 ease-in'
