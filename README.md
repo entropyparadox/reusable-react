@@ -58,9 +58,16 @@ npx create-react-app . --template typescript
 }
 ```
 
-5. `.gitignore` 파일에 다음 내용을 추가한다.
+5. 프로젝트 루트 경로에 .env 와 .env.example 파일을 생성하고 다음 내용으로 채워준다.
 
 ```
+REACT_APP_API_URL=http://localhost:8000
+```
+
+6. `.gitignore` 파일에 다음 내용을 추가한다.
+
+```
+.env
 .eslintcache
 ```
 
