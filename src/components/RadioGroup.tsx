@@ -26,7 +26,7 @@ export const RadioGroup: FC<RadioGroupProps> = ({
   return (
     <div {...props}>
       {label && <Label text={label} />}
-      <div>
+      <div className="flex">
         {Children.map(children, (child) => {
           if (isValidElement(child) && child.type === Radio) {
             return cloneElement(child, { name, onChange });
