@@ -7,7 +7,7 @@ export interface BarButtonProps
   to?: string;
   variant?: 'flat' | 'outlined';
   height?: 'h-13' | 'h-12' | 'h-11' | 'h-8';
-  rounded?: 'rounded' | 'rounded-lg' | 'rounded-full';
+  rounded?: 'rounded-none' | 'rounded' | 'rounded-lg' | 'rounded-full';
   fontSize?: 'text-xs' | 'text-sm' | 'text-base';
   theme?:
     | 'brand-1'
