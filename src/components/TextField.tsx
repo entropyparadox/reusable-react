@@ -19,7 +19,7 @@ export const TextField: FC<TextFieldProps> = ({
       {...props}
       id={htmlId}
       type={type}
-      className="block px-4 w-full h-12
+      className="block px-4 w-full h-12 border
                  border-gray-200 rounded-md sm:text-sm
                  focus:ring-0 focus:border-brand-1 placeholder-gray-400
                  disabled:bg-gray-100 disabled:text-gray-400"

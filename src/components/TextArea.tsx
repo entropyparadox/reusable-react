@@ -13,7 +13,7 @@ export const TextArea: FC<TextAreaProps> = ({ label, ...props }) => {
     <textarea
       {...props}
       id={htmlId}
-      className="block px-4 w-full h-52
+      className="block px-4 w-full h-48 py-2
                  border-gray-200 rounded-md sm:text-sm
                  focus:ring-0 focus:border-brand-1 placeholder-gray-400"
     />
