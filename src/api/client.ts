@@ -13,8 +13,10 @@ const uri =
 
 const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors?.some((error) => error.message === 'Unauthorized')) {
-    localStorage.clear();
-    window.location.reload();
+    if (localStorage.length > 0) {
+      localStorage.clear();
+      window.location.reload();
+    }
   }
 });
 
