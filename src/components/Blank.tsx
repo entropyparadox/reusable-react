@@ -3,11 +3,15 @@ import { use100vh } from 'react-div-100vh';
 
 interface BlankProps {
   text?: string;
+  reversed?: boolean;
 }
 
-export const Blank: FC<BlankProps> = ({ text, children }) => {
+export const Blank: FC<BlankProps> = ({ text, reversed, children }) => {
   let vh = use100vh();
   const height = vh ? `${vh}px` : '100vh';
+
+  const backgroundColor = reversed ? 'bg-white' : 'bg-black';
+  const textColor = reversed ? 'text-black' : 'text-white';
 
   if (!text && !children) {
     text = 'LOADING...';
@@ -15,14 +19,14 @@ export const Blank: FC<BlankProps> = ({ text, children }) => {
 
   return (
     <div
-      className="fixed inset-0 w-full h-screen z-100 bg-black opacity-50 flex items-center justify-center"
+      className={`fixed inset-0 w-full h-screen z-100 ${backgroundColor} opacity-50 flex items-center justify-center`}
       style={{ height }}
-      onClick={e => {
+      onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
       }}
     >
-      <div className="text-white text-2xl">
+      <div className={`${textColor} text-2xl`}>
         {text} {children}
       </div>
     </div>

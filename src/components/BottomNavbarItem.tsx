@@ -4,7 +4,7 @@ interface BottomNavbarItemProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: FC<SVGProps<SVGSVGElement>>;
   label: string;
-  theme?: 'brand-1' | 'brand-2';
+  theme?: 'brand-1' | 'brand-2' | string;
   active: boolean;
 }
 
