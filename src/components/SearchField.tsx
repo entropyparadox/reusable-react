@@ -27,7 +27,7 @@ export const SearchField: FC<SearchFieldProps> = ({
       <input
         {...props}
         ref={input}
-        className="flex-1 text-sm focus:ring-0 placeholder-gray-400"
+        className="flex-1 text-sm outline-none focus:outline-none focus:ring-0 placeholder-gray-400"
         value={value}
         onChange={onChange}
       />

@@ -18,7 +18,7 @@ export const ListItem: FC<ListItemProps> = ({
   const borderInner = fullBorder ? 'border-0' : 'border-b';
 
   return (
-    <li className={`bg-white ${borderOuter}`}>
+    <li className={`bg-white ${borderOuter} focus:outline-none focus:ring-0`}>
       <button
         {...props}
         className="px-5 w-full"
