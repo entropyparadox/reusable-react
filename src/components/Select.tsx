@@ -1,7 +1,7 @@
 import React, { useState, SelectHTMLAttributes, FC } from 'react';
 import { useId } from 'react-id-generator';
-import { Label } from '.';
 import { ReactComponent as ArrowDown } from '../assets/images/select-arrow-down.svg';
+import { Label } from './Label';
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
