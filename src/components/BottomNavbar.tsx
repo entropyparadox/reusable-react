@@ -7,7 +7,7 @@ export const BottomNavbar: FC<HTMLAttributes<HTMLElement>> = ({
   return (
     <nav
       {...props}
-      className="fixed bottom-0 flex w-full h-fixed-bottom border-t bg-white"
+      className="fixed bottom-0 flex w-full max-w-inherit h-fixed-bottom border-t bg-white"
     >
       {children}
     </nav>

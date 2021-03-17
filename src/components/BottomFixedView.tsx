@@ -9,6 +9,8 @@ export const BottomFixedView: FC<BottomFixedViewProps> = ({
   backgroundColor = 'bg-white',
 }) => {
   return (
-    <div className={`fixed bottom-0 w-full ${backgroundColor}`}>{children}</div>
+    <div className={`fixed bottom-0 w-full max-w-inherit ${backgroundColor}`}>
+      {children}
+    </div>
   );
 };

@@ -21,7 +21,7 @@ export const BottomFixedButton: FC<BottomFixedButtonProps> = ({
   const button = (
     <button
       {...props}
-      className={`fixed bottom-0 w-full h-12
+      className={`fixed bottom-0 w-full max-w-inherit h-12
                   ${backgroundColor} ${textColor} disabled:bg-gray-300`}
     >
       {text ?? children}
