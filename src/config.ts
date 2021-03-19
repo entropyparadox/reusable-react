@@ -85,7 +85,6 @@ export const reusableConfig = (config: any) => {
     '10/12': '83.333333%',
     '11/12': '91.666667%',
     full: '100%',
-    inherit: 'inherit',
   };
 
   config.plugins = [
@@ -139,12 +138,14 @@ export const reusableConfig = (config: any) => {
     prose: '65ch',
     ...breakpoints(theme('screens')),
     ...size,
+    inherit: 'inherit',
   });
 
   config.theme.maxHeight = (theme: any) => ({
     ...theme('spacing'),
     screen: '100vh',
     ...size,
+    inherit: 'inherit',
   });
 
   config.theme.minWidth = {
