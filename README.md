@@ -76,29 +76,50 @@ REACT_APP_API_URL=http://localhost:8000
 1. 아래 명령어를 입력하여 필요한 패키지들을 설치한다.
 
 ```
-npm i tailwindcss postcss postcss-cli autoprefixer npm-run-all
+npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat @tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
+npm install @craco/craco
 ```
 
-`npm-run-all` 은 여러 npm script 명령어를 동시에 병렬로 실행하게 해줍니다.
-
-2. 아래 명령어를 입력하여 `tailwind.config.js` 파일을 생성한다.
+zsh 에서는 `zsh: no matches found: postcss@^7` 라는 에러가 나는데 아래 처럼 따옴표로 감싸주면 된다.
 
 ```
-npx tailwindcss init --full
+npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat @tailwindcss/postcss7-compat "postcss@^7" "autoprefixer@^9"
+npm install @craco/craco
 ```
 
-3. 프로젝트 루트 경로에 `postcss.config.js` 파일을 생성하고 아래 내용을 입력한다.
+2. `package.json` 파일의 `scripts` 부분을 아래 내용으로 교체한다.
+
+```
+"scripts": {
+  "start": "craco start",
+  "build": "craco build",
+  "test": "craco test",
+  "eject": "react-scripts eject"
+},
+```
+
+3. 프로젝트 루트 경로에 `craco.config.js` 파일을 생성하고 아래 내용을 입력한다.
 
 ```
 module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
+  style: {
+    postcss: {
+      plugins: [
+        require('tailwindcss'),
+        require('autoprefixer'),
+      ],
+    },
   },
-};
+}
 ```
 
-4. `src` 폴더 안에 `tailwind.css` 파일을 생성하고 아래 내용을 입력한다.
+4. 아래 명령어를 입력하여 `tailwind.config.js` 파일을 생성한다.
+
+```
+npx tailwindcss init
+```
+
+5. `src` 폴더 안에 `index.css` 파일을 생성하고 아래 내용을 입력한다.
 
 ```
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
@@ -107,33 +128,11 @@ module.exports = {
 @tailwind utilities;
 ```
 
-5. `package.json` 파일의 `scripts` 부분을 아래 내용으로 교체한다.
+6. `src/index.tsx` 파일에 다음 내용을 추가한다.
 
 ```
-"scripts": {
-  "start": "run-p watch:css start:dev",
-  "watch:css": "postcss -w src/tailwind.css -o src/tailwind.generated.css",
-  "start:dev": "react-scripts start",
-  "build": "npm run build:css && react-scripts build",
-  "build:css": "postcss src/tailwind.css -o src/tailwind.generated.css",
-  "test": "react-scripts test",
-  "eject": "react-scripts eject"
-},
+import './index.css';
 ```
-
-6. `.gitignore` 파일에 다음 내용을 추가한다.
-
-```
-tailwind.generated.css
-```
-
-7. `src/index.tsx` 파일에 다음 내용을 추가한다.
-
-```
-import './tailwind.generated.css';
-```
-
-기존의 `index.css` 파일은 삭제해줍니다.
 
 ### vscode 세팅
 
