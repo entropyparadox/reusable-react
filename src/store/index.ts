@@ -24,3 +24,14 @@ export const kakaoIdState = atom<number | null>({
   key: 'kakaoIdState',
   default: null,
 });
+
+interface AlertState {
+  open: boolean;
+  severity: 'error' | 'warning' | 'info' | 'success';
+  text: string;
+}
+
+export const alertState = atom<AlertState>({
+  key: 'alertState',
+  default: { open: false, severity: 'success', text: '' },
+});

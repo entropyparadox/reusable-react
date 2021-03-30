@@ -1,9 +1,9 @@
-import { useMutation } from '@apollo/client';
+import { ApolloError, useMutation } from '@apollo/client';
 import queryString from 'query-string';
 import { useLocation, useParams } from 'react-router';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { Login, LoginWithKakao, Signup } from '../api';
-import { kakaoIdState, tokenState } from '../store';
+import { alertState, kakaoIdState, tokenState } from '../store';
 
 export const useIdParam = () => {
   const params = useParams<{ id: string }>();
@@ -25,33 +25,40 @@ export const useAuth = () => {
   return { authenticated: token !== null };
 };
 
-export const useSignup = (input: any) => {
+export const useSignup = (
+  input: any,
+  onError?: (error: ApolloError) => void,
+) => {
   const setToken = useSetRecoilState(tokenState);
   const [signup] = useMutation(Signup, {
     variables: { input },
     onCompleted: ({ signup: { token } }) => {
       setToken(token);
     },
-    onError: (error) => console.error(error),
+    onError,
   });
 
   return signup;
 };
 
-export const useLogin = (email: string, password: string) => {
+export const useLogin = (
+  email: string,
+  password: string,
+  onError?: (error: ApolloError) => void,
+) => {
   const setToken = useSetRecoilState(tokenState);
   const [login] = useMutation(Login, {
     variables: { email, password },
     onCompleted: ({ login: { token } }) => {
       setToken(token);
     },
-    onError: (error) => console.error(error),
+    onError,
   });
 
   return login;
 };
 
-export const useLoginWithKakao = () => {
+export const useLoginWithKakao = (onError?: (error: ApolloError) => void) => {
   const setToken = useSetRecoilState(tokenState);
   const setKakaoId = useSetRecoilState(kakaoIdState);
   const [loginWithKakao] = useMutation(LoginWithKakao, {
@@ -62,7 +69,7 @@ export const useLoginWithKakao = () => {
         setKakaoId(kakaoId);
       }
     },
-    onError: (error) => console.error(error),
+    onError,
   });
 
   return () =>
@@ -82,5 +89,12 @@ export const useLogout = () => {
   return () => {
     resetToken();
     resetKakaoId();
+  };
+};
+
+export const useShowAlert = () => {
+  const setAlert = useSetRecoilState(alertState);
+  return (severity: 'error' | 'warning' | 'info' | 'success', text: string) => {
+    setAlert({ open: true, severity, text });
   };
 };

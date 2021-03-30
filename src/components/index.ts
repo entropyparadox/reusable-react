@@ -1,3 +1,4 @@
+export * from './Alert';
 export * from './AspectRatioImage';
 export * from './AuthRoute';
 export * from './Avatar';
