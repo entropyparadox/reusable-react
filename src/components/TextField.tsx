@@ -5,11 +5,13 @@ import { Label } from './Label';
 interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   type?: string;
   label?: string;
+  feedback?: string;
 }
 
 export const TextField: FC<TextFieldProps> = ({
   type = 'text',
   label,
+  feedback,
   ...props
 }) => {
   const [htmlId] = useId(1, 'textfield');
@@ -30,6 +32,7 @@ export const TextField: FC<TextFieldProps> = ({
     <div>
       {label && <Label text={label} htmlFor={htmlId} />}
       {input}
+      {feedback && <span className="text-red-400 text-sm">{feedback}</span>}
     </div>
   ) : (
     input
