@@ -190,7 +190,7 @@ module.exports = reusableConfig({
 });
 ```
 
-6. `src/tailwind.css` 파일에 다음 내용을 추가한다.
+6. `src/index.css` 파일에 다음 내용을 추가한다.
 
 ```
 @layer base {
