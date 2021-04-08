@@ -175,41 +175,30 @@ npm i @entropyparadox/reusable-react
 5. tailwind.config.js 를 다음과 같이 변경한다.
 
 ```
-const colors = require('tailwindcss/colors');
-const { reusableConfig } = require('@entropyparadox/reusable-react');
+const { reusableTailwindPreset } = require('@entropyparadox/reusable-react');
 
-module.exports = reusableConfig({
-  // ...
+module.exports = {
+  presets: [reusableTailwindPreset],
+  purge: [],
+  darkMode: false, // or 'media' or 'class'
   theme: {
-    colors: {
-    // 해당 프로젝트의 브랜드 컬러
-    'brand-1': '#133132',
-    'brand-2': '#d1ab83',
+    extend: {
+      colors: {
+        'brand-1': '#000000',
+        'brand-2': '#EA5519',
+      },
+    },
   },
-  // ...
-});
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+};
 ```
 
-6. `src/index.css` 파일에 다음 내용을 추가한다.
+커스텀 설정을 추가할 때 theme 바로 밑에 추가하면 디폴트 설정을 replace 하게 되므로 theme.extend 아래에 추가해야 합니다.
 
-```
-@layer base {
-  body {
-    @apply mb-fixed-bottom;
-  }
-  button {
-    @apply focus:outline-none;
-  }
-  input {
-    @apply focus:outline-none;
-  }
-  textarea {
-    @apply focus:outline-none;
-  }
-}
-```
-
-7. `src/index.tsx` 파일에서 `App` 을 `ReusableProvider` 로 감싼다.
+6. `src/index.tsx` 파일에서 `App` 을 `ReusableProvider` 로 감싼다.
 
 ```
 import { ReusableProvider } from '@entropyparadox/reusable-react';
