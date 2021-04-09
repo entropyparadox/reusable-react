@@ -72,13 +72,22 @@ export const useLoginWithKakao = (onError?: (error: ApolloError) => void) => {
     onError,
   });
 
+  return (accessToken: string) =>
+    loginWithKakao({
+      variables: { accessToken },
+    });
+};
+
+export const useLoginWithKakaoWeb = (
+  onError?: (error: ApolloError) => void,
+) => {
+  const loginWithKakao = useLoginWithKakao(onError);
+
   return () =>
     // @ts-ignore
     Kakao.Auth.login({
       success: (response: any) => {
-        loginWithKakao({
-          variables: { accessToken: response.access_token },
-        });
+        loginWithKakao(response.access_token);
       },
     });
 };
