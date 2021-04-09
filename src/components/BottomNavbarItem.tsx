@@ -1,10 +1,11 @@
 import React, { ButtonHTMLAttributes, FC, SVGProps } from 'react';
+import { Color } from '../types/color';
 
 interface BottomNavbarItemProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: FC<SVGProps<SVGSVGElement>>;
   label: string;
-  theme?: 'brand-1' | 'brand-2' | string;
+  theme?: Color;
   active: boolean;
 }
 

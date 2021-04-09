@@ -1,5 +1,6 @@
 import React, { ButtonHTMLAttributes, FC } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Color } from '../types/color';
 
 export interface BarButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -9,14 +10,7 @@ export interface BarButtonProps
   height?: 'h-13' | 'h-12' | 'h-11' | 'h-8';
   rounded?: 'rounded-none' | 'rounded' | 'rounded-lg' | 'rounded-full';
   fontSize?: 'text-xs' | 'text-sm' | 'text-base';
-  theme?:
-    | 'brand-1'
-    | 'brand-2'
-    | 'black'
-    | 'gray-800'
-    | 'gray-300'
-    | 'gray-50'
-    | 'kakao';
+  theme?: Color;
 }
 
 export const Button: FC<BarButtonProps> = ({

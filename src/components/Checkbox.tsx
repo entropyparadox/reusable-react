@@ -1,10 +1,11 @@
 import React, { FC, InputHTMLAttributes } from 'react';
 import { useId } from 'react-id-generator';
+import { Color } from '../types/color';
 import { Label } from './Label';
 
 interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  theme?: 'brand-1' | 'brand-2';
+  theme?: Color;
 }
 
 export const Checkbox: FC<CheckboxProps> = ({

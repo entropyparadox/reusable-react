@@ -1,9 +1,10 @@
 import React, { ButtonHTMLAttributes, FC } from 'react';
+import { Color } from '../types/color';
 
 interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   full?: boolean;
-  theme?: 'brand-1' | 'brand-2';
+  theme?: Color;
   active: boolean;
   fontSize?: 'text-sm' | 'text-base' | 'text-lg' | 'text-xl';
 }

@@ -1,9 +1,10 @@
 import React, { ButtonHTMLAttributes, FC } from 'react';
+import { Color } from '../types/color';
 
 interface BoxTabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   subText?: string;
-  theme?: 'brand-1' | 'brand-2';
+  theme?: Color;
   active: boolean;
 }
 
