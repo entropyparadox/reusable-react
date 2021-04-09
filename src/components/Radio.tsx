@@ -4,7 +4,14 @@ import { Label } from './Label';
 
 interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  theme?: 'brand-1' | 'brand-2';
+  theme?:
+    | 'brand-1'
+    | 'brand-2'
+    | 'black'
+    | 'gray-800'
+    | 'gray-300'
+    | 'gray-50'
+    | 'kakao';
 }
 
 export const Radio: FC<RadioProps> = ({
