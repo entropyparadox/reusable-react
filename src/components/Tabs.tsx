@@ -3,7 +3,7 @@ import React, { FC, HTMLAttributes } from 'react';
 interface TabsProps extends HTMLAttributes<HTMLElement> {
   sticky?: boolean;
   padding?: 'p-0' | 'px-3';
-  full: boolean;
+  full?: boolean;
   height?: 'h-10' | 'h-16' | 'h-20';
   borderless?: boolean;
 }
