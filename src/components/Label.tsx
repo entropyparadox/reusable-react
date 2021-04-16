@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, LabelHTMLAttributes } from 'react';
 
-interface LabelProps {
+interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   text?: string;
   htmlFor?: string;
   margin?: 'mb-1' | 'm-0';
@@ -13,9 +13,11 @@ export const Label: FC<LabelProps> = ({
   htmlFor,
   margin = 'mb-1',
   fontSize = 'text-sm',
+  ...props
 }) => {
   return (
     <label
+      {...props}
       htmlFor={htmlFor}
       className={`block ${margin} ${fontSize} text-gray-800`}
     >

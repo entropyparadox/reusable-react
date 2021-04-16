@@ -1,4 +1,4 @@
-import React, { FC, InputHTMLAttributes } from 'react';
+import React, { FC, InputHTMLAttributes, LabelHTMLAttributes } from 'react';
 import { useId } from 'react-id-generator';
 import { Color } from '../types/color';
 import { Label } from './Label';
@@ -6,11 +6,13 @@ import { Label } from './Label';
 interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   theme?: Color;
+  labelProps?: LabelHTMLAttributes<HTMLLabelElement>;
 }
 
 export const Radio: FC<RadioProps> = ({
   label,
   theme = 'brand-1',
+  labelProps = {},
   ...props
 }) => {
   const [htmlId] = useId(1, 'radio');
@@ -25,6 +27,7 @@ export const Radio: FC<RadioProps> = ({
       />
       {label && (
         <Label
+          {...labelProps}
           text={label}
           htmlFor={htmlId}
           margin="m-0"
