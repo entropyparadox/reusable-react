@@ -1,4 +1,10 @@
-import React, { ChangeEvent, FC, InputHTMLAttributes, useState } from 'react';
+import React, {
+  ChangeEvent,
+  FC,
+  InputHTMLAttributes,
+  useEffect,
+  useState,
+} from 'react';
 import { Label } from './Label';
 import { TextField } from './TextField';
 
@@ -14,12 +20,17 @@ export const PhoneNumberField: FC<PhoneNumberFieldProps> = ({
   onChange,
   ...props
 }) => {
-  const matched = value.match(
-    /([0-9]{3}|[0-9]{2})([0-9]{4}|[0-9]{3})([0-9]{4})/
-  );
-  const [number1, setNumber1] = useState(matched?.[1] ?? '');
-  const [number2, setNumber2] = useState(matched?.[2] ?? '');
-  const [number3, setNumber3] = useState(matched?.[3] ?? '');
+  const [number1, setNumber1] = useState('');
+  const [number2, setNumber2] = useState('');
+  const [number3, setNumber3] = useState('');
+  useEffect(() => {
+    const matched = value.match(
+      /([0-9]{3}|[0-9]{2})([0-9]{4}|[0-9]{3})([0-9]{4})/,
+    );
+    setNumber1(matched?.[1] ?? '');
+    setNumber2(matched?.[2] ?? '');
+    setNumber3(matched?.[3] ?? '');
+  }, [value]);
 
   return (
     <div>
