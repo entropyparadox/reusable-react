@@ -1,6 +1,7 @@
 import React, { ButtonHTMLAttributes, FC } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Color } from '../types/color';
+import { Rounded } from '../types/rounded';
 
 export interface BarButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -8,7 +9,7 @@ export interface BarButtonProps
   to?: string;
   variant?: 'flat' | 'outlined';
   height?: 'h-13' | 'h-12' | 'h-11' | 'h-8';
-  rounded?: 'rounded-none' | 'rounded' | 'rounded-lg' | 'rounded-full';
+  rounded?: Rounded;
   fontSize?: 'text-xs' | 'text-sm' | 'text-base';
   theme?: Color;
 }

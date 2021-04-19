@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
+import { Rounded } from '../types/rounded';
 
 interface AspectRatioImageProps {
   src: string;
   alt: string;
   pb: string;
-  rounded?: 'rounded';
+  rounded?: Rounded;
 }
 
 export const AspectRatioImage: FC<AspectRatioImageProps> = ({
