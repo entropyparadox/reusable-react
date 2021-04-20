@@ -1,19 +1,46 @@
 import React, { ButtonHTMLAttributes, FC } from 'react';
+import { TW, TWProperties } from '../tailwind/tw';
 
 interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   selected?: boolean;
+  tw?: TWProperties;
+  twSelected?: TWProperties;
 }
 
-export const Chip: FC<ChipProps> = ({ text, selected = false, ...props }) => {
-  const backgroundColor = selected ? 'bg-brand-1' : 'bg-gray-100';
-  const color = selected ? 'text-white' : 'text-gray-800';
+export const Chip: FC<ChipProps> = ({
+  text,
+  selected = false,
+  tw = {},
+  twSelected = {},
+  ...props
+}) => {
+  const defaultTW = new TW(
+    {
+      backgroundColor: 'bg-gray-100',
+      borderRadius: 'rounded-full',
+      color: 'text-gray-800',
+      fontSize: 'text-sm',
+      paddingX: 'px-4',
+      paddingY: 'py-2',
+      whiteSpace: 'whitespace-normal',
+    },
+    tw,
+  );
+
+  const selectedTW = new TW(
+    defaultTW,
+    {
+      backgroundColor: 'bg-brand-1',
+      color: 'text-white',
+    },
+    twSelected,
+  );
 
   return (
     <button
+      className={selected ? selectedTW.toClassName() : defaultTW.toClassName()}
       {...props}
-      className={`px-4 py-2 rounded-full ${backgroundColor}
-                  whitespace-nowrap text-2sm ${color}`}
     >
       {text}
     </button>
