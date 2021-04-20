@@ -11,10 +11,10 @@ export const NotificationButton: FC<NotificationButtonProps> = ({
 }) => {
   return (
     <IconButton
-      {...props}
       icon={<NotificationIcon />}
       to={onClick ? undefined : '/notifications'}
       onClick={onClick}
+      {...props}
     />
   );
 };

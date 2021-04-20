@@ -7,6 +7,7 @@ import React, {
   isValidElement,
 } from 'react';
 import { useId } from 'react-id-generator';
+import { TW, TWProperties } from '../tailwind/tw';
 import { Label } from './Label';
 import { Radio } from './Radio';
 
@@ -14,6 +15,8 @@ interface RadioGroupProps extends HTMLAttributes<HTMLDivElement> {
   label?: string;
   flexDirection?: 'flex-col' | 'flex-row';
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  tw?: TWProperties;
+  twLabel?: TWProperties;
 }
 
 export const RadioGroup: FC<RadioGroupProps> = ({
@@ -21,14 +24,21 @@ export const RadioGroup: FC<RadioGroupProps> = ({
   label,
   flexDirection = 'flex-col',
   onChange,
+  tw = {},
+  twLabel = {},
   ...props
 }) => {
   const [name] = useId(1, 'radiogroup');
 
+  const defaultTW = new TW({
+    display: 'flex',
+    flexDirection: 'flex-col',
+  }).merge(tw);
+
   return (
-    <div {...props}>
-      {label && <Label text={label} />}
-      <div className={`flex ${flexDirection}`}>
+    <div>
+      {label && <Label text={label} tw={twLabel} />}
+      <div className={defaultTW.toClassName()} {...props}>
         {Children.map(children, (child) => {
           if (isValidElement(child) && child.type === Radio) {
             return cloneElement(child, { name, onChange });

@@ -1,10 +1,18 @@
 import React, { FC, HTMLAttributes } from 'react';
+import { TW, TWProperties } from '../tailwind/tw';
 
-interface ListProps extends HTMLAttributes<HTMLUListElement> {}
+interface ListProps extends HTMLAttributes<HTMLUListElement> {
+  tw?: TWProperties;
+}
 
-export const List: FC<ListProps> = ({ children, ...props }) => {
+export const List: FC<ListProps> = ({ children, tw = {}, ...props }) => {
+  const defaultTW = new TW({
+    display: 'flex',
+    flexDirection: 'flex-col',
+  }).merge(tw);
+
   return (
-    <ul {...props} className="flex flex-col">
+    <ul className={defaultTW.toClassName()} {...props}>
       {children}
     </ul>
   );

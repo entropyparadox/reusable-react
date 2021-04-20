@@ -14,7 +14,7 @@ export const SimpleListItem: FC<SimpleListItemProps> = ({
   ...props
 }) => {
   return (
-    <ListItem {...props} to={to}>
+    <ListItem to={to} {...props}>
       <div className="flex justify-between items-center space-x-3">
         <span className="truncate font-semibold text-lsm text-gray-800">
           {text}

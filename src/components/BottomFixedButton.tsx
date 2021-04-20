@@ -1,29 +1,36 @@
 import React, { ButtonHTMLAttributes, FC } from 'react';
 import { Link } from 'react-router-dom';
+import { TW, TWProperties } from '../tailwind/tw';
 
 interface BottomFixedButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
   to?: string;
-  reversed?: boolean;
+  tw?: TWProperties;
 }
 
 export const BottomFixedButton: FC<BottomFixedButtonProps> = ({
   children,
   text,
   to,
-  reversed = false,
+  tw = {},
   ...props
 }) => {
-  const backgroundColor = reversed ? 'bg-white' : 'bg-brand-1';
-  const textColor = reversed ? 'text-brand-1' : 'text-white';
+  const defaultTW = new TW({
+    backgroundColor: 'bg-brand-1',
+    bottom: 'bottom-0',
+    color: 'text-white',
+    height: 'h-fixed-bottom',
+    maxWidth: 'max-w-inherit',
+    position: 'fixed',
+    width: 'w-full',
+    disabled: {
+      backgroundColor: 'bg-gray-300',
+    },
+  }).merge(tw);
 
   const button = (
-    <button
-      {...props}
-      className={`fixed bottom-0 w-full max-w-inherit h-12
-                  ${backgroundColor} ${textColor} disabled:bg-gray-300`}
-    >
+    <button className={defaultTW.toClassName()} {...props}>
       {text ?? children}
     </button>
   );

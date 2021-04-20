@@ -1,27 +1,21 @@
-import React, { FC } from 'react';
+import React, { FC, HTMLAttributes } from 'react';
+import { TW, TWProperties } from '../tailwind/tw';
 
-interface SectionProps {
-  flexDirection?: 'flex-col' | 'flex-row';
-  alignItems?: 'items-stretch' | 'items-center';
-  spaceY?: 'space-y-2' | 'space-y-4';
-  backgroundColor?:
-    | 'bg-transparent'
-    | 'bg-white'
-    | 'bg-gray-50'
-    | 'bg-gray-100';
+interface SectionProps extends HTMLAttributes<HTMLElement> {
+  tw?: TWProperties;
 }
 
-export const Section: FC<SectionProps> = ({
-  children,
-  flexDirection = 'flex-col',
-  alignItems = 'items-stretch',
-  spaceY = 'space-y-4',
-  backgroundColor = 'bg-transparent',
-}) => {
+export const Section: FC<SectionProps> = ({ children, tw = {}, ...props }) => {
+  const defaultTW = new TW({
+    display: 'flex',
+    flexDirection: 'flex-col',
+    paddingX: 'px-5',
+    paddingY: 'py-4',
+    spaceY: 'space-y-4',
+  }).merge(tw);
+
   return (
-    <section
-      className={`flex ${flexDirection} ${alignItems} ${spaceY} px-5 py-4 ${backgroundColor}`}
-    >
+    <section className={defaultTW.toClassName()} {...props}>
       {children}
     </section>
   );

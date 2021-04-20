@@ -1,26 +1,28 @@
 import React, { FC, LabelHTMLAttributes } from 'react';
+import { TW, TWProperties } from '../tailwind/tw';
 
 interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   text?: string;
   htmlFor?: string;
-  margin?: 'mb-1' | 'm-0';
-  fontSize?: 'text-sm' | 'text-base';
+  tw?: TWProperties;
 }
 
 export const Label: FC<LabelProps> = ({
   children,
   text,
   htmlFor,
-  margin = 'mb-1',
-  fontSize = 'text-sm',
+  tw = {},
   ...props
 }) => {
+  const defaultTW = new TW({
+    color: 'text-gray-800',
+    display: 'block',
+    fontSize: 'text-sm',
+    marginBottom: 'mb-1',
+  }).merge(tw);
+
   return (
-    <label
-      {...props}
-      htmlFor={htmlFor}
-      className={`block ${margin} ${fontSize} text-gray-800`}
-    >
+    <label htmlFor={htmlFor} className={defaultTW.toClassName()} {...props}>
       {text ?? children}
     </label>
   );

@@ -10,9 +10,9 @@ export const CloseButton: FC<CloseButtonProps> = ({ onClick, ...props }) => {
 
   return (
     <IconButton
-      {...props}
       icon={<CloseIcon />}
       onClick={onClick ?? (() => history.goBack())}
+      {...props}
     />
   );
 };

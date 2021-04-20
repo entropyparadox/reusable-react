@@ -1,13 +1,16 @@
-import React, { FC } from 'react';
+import React, { FC, HTMLAttributes } from 'react';
+import { TW, TWProperties } from '../tailwind/tw';
 
-interface DividerProps {
-  margin?: 'mx-0' | 'mx-5';
-  height?: 'h-px' | 'h-3';
+interface DividerProps extends HTMLAttributes<HTMLHRElement> {
+  tw?: TWProperties;
 }
 
-export const Divider: FC<DividerProps> = ({
-  margin = 'mx-0',
-  height = 'h-px',
-}) => {
-  return <hr className={`${margin} ${height} border-0 bg-gray-100`} />;
+export const Divider: FC<DividerProps> = ({ tw = {}, ...props }) => {
+  const defaultTW = new TW({
+    backgroundColor: 'bg-gray-100',
+    borderWidth: 'border-0',
+    height: 'h-px',
+  }).merge(tw);
+
+  return <hr className={defaultTW.toClassName()} {...props} />;
 };

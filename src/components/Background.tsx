@@ -1,17 +1,26 @@
-import React, { FC } from 'react';
+import React, { FC, HTMLAttributes } from 'react';
+import { TW, TWProperties } from '../tailwind/tw';
 
-interface BackgroundProps {
-  backgroundColor: 'white' | 'gray-50' | 'gray-100' | 'black';
+interface BackgroundProps extends HTMLAttributes<HTMLDivElement> {
+  tw?: TWProperties;
 }
 
 export const Background: FC<BackgroundProps> = ({
   children,
-  backgroundColor = 'white',
+  tw = {},
+  ...props
 }) => {
+  const defaultTW = new TW({
+    backgroundColor: 'bg-white',
+    height: 'h-screen',
+    maxWidth: 'max-w-inherit',
+    position: 'fixed',
+    width: 'w-screen',
+    zIndex: '-z-10',
+  }).merge(tw);
+
   return (
-    <div
-      className={`fixed w-screen h-screen max-w-inherit -z-10 bg-${backgroundColor}`}
-    >
+    <div className={defaultTW.toClassName()} {...props}>
       {children}
     </div>
   );

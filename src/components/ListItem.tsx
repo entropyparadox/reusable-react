@@ -20,9 +20,9 @@ export const ListItem: FC<ListItemProps> = ({
   return (
     <li className={`bg-white ${borderOuter} focus:outline-none focus:ring-0`}>
       <button
-        {...props}
         className="px-5 w-full"
         onClick={to ? () => history.push(to) : onClick}
+        {...props}
       >
         <div className={`py-4 ${borderInner}`}>{children}</div>
       </button>

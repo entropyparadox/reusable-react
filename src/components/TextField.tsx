@@ -1,41 +1,65 @@
 import React, { FC, InputHTMLAttributes } from 'react';
 import { useId } from 'react-id-generator';
-import { Rounded } from '../types/rounded';
+import { TW, TWProperties } from '../tailwind/tw';
 import { Label } from './Label';
 
 interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
-  type?: string;
   label?: string;
   feedback?: string;
-  rounded?: Rounded;
+  tw?: TWProperties;
+  twLabel?: TWProperties;
+  twFeedback?: TWProperties;
 }
 
 export const TextField: FC<TextFieldProps> = ({
   type = 'text',
   label,
   feedback,
-  rounded = 'rounded-md',
+  tw = {},
+  twLabel = {},
+  twFeedback = {},
   ...props
 }) => {
   const [htmlId] = useId(1, 'textfield');
 
+  const defaultTW = new TW({
+    borderColor: 'border-gray-200',
+    borderRadius: 'rounded-md',
+    borderWidth: 'border',
+    display: 'block',
+    height: 'h-12',
+    paddingX: 'px-4',
+    placeholderColor: 'placeholder-gray-400',
+    width: 'w-full',
+    disabled: {
+      backgroundColor: 'bg-gray-100',
+      color: 'text-gray-400',
+    },
+    focus: {
+      borderColor: 'border-brand-1',
+      ring: 'ring-0',
+    },
+  }).merge(tw);
+
+  const feedbackTW = new TW({
+    color: 'text-red-400',
+    fontSize: 'text-sm',
+  }).merge(twFeedback);
+
   const input = (
     <input
-      {...props}
       id={htmlId}
       type={type}
-      className={`block px-4 w-full h-12 border
-                 border-gray-200 ${rounded} sm:text-sm
-                 focus:ring-0 focus:border-brand-1 placeholder-gray-400
-                 disabled:bg-gray-100 disabled:text-gray-400`}
+      className={defaultTW.toClassName()}
+      {...props}
     />
   );
 
   return label ? (
     <div>
-      {label && <Label text={label} htmlFor={htmlId} />}
+      {label && <Label text={label} htmlFor={htmlId} tw={twLabel} />}
       {input}
-      {feedback && <span className="text-red-400 text-sm">{feedback}</span>}
+      {feedback && <span className={feedbackTW.toClassName()}>{feedback}</span>}
     </div>
   ) : (
     input

@@ -7,10 +7,10 @@ interface HomeButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 export const HomeButton: FC<HomeButtonProps> = ({ onClick, ...props }) => {
   return (
     <IconButton
-      {...props}
       icon={<HomeIcon />}
       to={onClick ? undefined : '/'}
       onClick={onClick}
+      {...props}
     />
   );
 };

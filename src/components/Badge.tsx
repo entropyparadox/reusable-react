@@ -1,48 +1,33 @@
-import React, { FC } from 'react';
+import React, { FC, HTMLAttributes } from 'react';
+import { TW, TWProperties } from '../tailwind/tw';
 
-interface BadgeProps {
-  size?: 'basic' | 'large';
+interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   text?: string;
   removeButton?: boolean;
-  backgroundColor?:
-    | 'bg-gray-100'
-    | 'bg-red-100'
-    | 'bg-yellow-100'
-    | 'bg-green-100'
-    | 'bg-blue-100'
-    | 'bg-indigo-100'
-    | 'bg-purple-100'
-    | 'bg-pink-100'
-    | string;
-  textColor?:
-    | 'text-white'
-    | 'text-gray-800'
-    | 'text-red-800'
-    | 'text-yellow-800'
-    | 'text-green-800'
-    | 'text-blue-800'
-    | 'text-indigo-800'
-    | 'text-purple-800'
-    | 'text-pink-800'
-    | string;
+  tw?: TWProperties;
 }
 
 export const Badge: FC<BadgeProps> = ({
   children,
-  size = 'basic',
   text,
   removeButton = false,
-  backgroundColor = 'bg-gray-100',
-  textColor = 'text-gray-800',
+  tw = {},
+  ...props
 }) => {
-  let badgeSize = 'px-2.5 py-0.5 text-xs';
-  if (size === 'large') {
-    badgeSize = 'px-3 py-0.5 text-sm';
-  }
+  const defaultTW = new TW({
+    alignItems: 'items-center',
+    backgroundColor: 'bg-gray-100',
+    borderRadius: 'rounded-full',
+    color: 'text-gray-800',
+    display: 'inline-flex',
+    fontSize: 'text-xs',
+    fontWeight: 'font-medium',
+    paddingX: 'px-2.5',
+    paddingY: 'py-0.5',
+  }).merge(tw);
+
   return (
-    <span
-      className={`inline-flex items-center ${badgeSize} rounded-full font-medium ${backgroundColor} ${textColor} ${backgroundColor}`}
-    >
+    <span className={defaultTW.toClassName()} {...props}>
       {text ?? children}
       {removeButton ? (
         <svg

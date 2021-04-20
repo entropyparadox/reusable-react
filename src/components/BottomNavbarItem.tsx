@@ -1,12 +1,16 @@
 import React, { ButtonHTMLAttributes, FC, SVGProps } from 'react';
+import { TW, TWProperties } from '../tailwind/tw';
 import { Color } from '../types/color';
 
 interface BottomNavbarItemProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: FC<SVGProps<SVGSVGElement>>;
-  label: string;
+  label?: string;
   theme?: Color;
   active: boolean;
+  tw?: TWProperties;
+  twIcon?: TWProperties;
+  twLabel?: TWProperties;
 }
 
 export const BottomNavbarItem: FC<BottomNavbarItemProps> = ({
@@ -14,18 +18,39 @@ export const BottomNavbarItem: FC<BottomNavbarItemProps> = ({
   label,
   theme = 'brand-1',
   active,
+  tw = {},
+  twIcon = {},
+  twLabel = {},
   ...props
 }) => {
-  const textColor = active ? `text-${theme}` : 'text-gray-500';
-  const iconColor = active ? `text-${theme}` : 'text-gray-300';
+  const defaultTW = new TW({
+    alignItems: 'items-center',
+    display: 'flex',
+    flex: 'flex-1',
+    flexDirection: 'flex-col',
+    height: 'h-12',
+    outline: 'outline-none',
+    focus: {
+      outline: 'outline-none',
+      ring: 'ring-0',
+    },
+  }).merge(tw);
+
+  const iconTW = new TW({
+    color: 'text-gray-300',
+    fill: 'fill-current',
+  }).merge(twIcon);
+
+  const labelTW = new TW({
+    color: 'text-gray-500',
+    fontSize: 'text-xs',
+    fontWeight: 'font-medium',
+  }).merge(twLabel);
 
   return (
-    <button
-      {...props}
-      className="flex-1 flex flex-col items-center h-12 focus:ring-0 focus:outline-none outline-none"
-    >
-      <Icon className={`fill-current ${iconColor}`} />
-      <span className={`font-medium text-2xs ${textColor}`}>{label}</span>
+    <button className={defaultTW.toClassName()} {...props}>
+      <Icon className={iconTW.toClassName()} />
+      {label ?? <span className={labelTW.toClassName()}>{label}</span>}
     </button>
   );
 };

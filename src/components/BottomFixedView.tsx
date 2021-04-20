@@ -1,15 +1,25 @@
-import React, { FC } from 'react';
+import React, { FC, HTMLAttributes } from 'react';
+import { TW, TWProperties } from '../tailwind/tw';
 
-interface BottomFixedViewProps {
-  backgroundColor?: 'bg-white' | 'bg-gray-100' | 'bg-gray-200';
+interface BottomFixedViewProps extends HTMLAttributes<HTMLDivElement> {
+  tw?: TWProperties;
 }
 
 export const BottomFixedView: FC<BottomFixedViewProps> = ({
   children,
-  backgroundColor = 'bg-white',
+  tw = {},
+  ...props
 }) => {
+  const defaultTW = new TW({
+    backgroundColor: 'bg-white',
+    bottom: 'bottom-0',
+    maxWidth: 'max-w-inherit',
+    position: 'fixed',
+    width: 'w-full',
+  }).merge(tw);
+
   return (
-    <div className={`fixed bottom-0 w-full max-w-inherit ${backgroundColor}`}>
+    <div className={defaultTW.toClassName()} {...props}>
       {children}
     </div>
   );

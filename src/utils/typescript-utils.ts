@@ -1,5 +1,5 @@
-export type KeysOfType<T, TProp> = {
-  [P in keyof T]: T[P] extends TProp ? P : never;
+export type KeyOfType<T, TProp> = {
+  [K in keyof T]: T[K] extends TProp ? K : never;
 }[keyof T];
 
 export type KnownKeys<T> = {
@@ -8,7 +8,8 @@ export type KnownKeys<T> = {
   ? U
   : never;
 
-export type OmitMethods<T> = Pick<
-  T,
-  { [K in keyof T]: T[K] extends (_: any) => any ? never : K }[keyof T]
->;
+export type NegativeAwareKeyOf<T, Prefix extends string> = keyof {
+  [K in keyof T as K extends `-${string}`
+    ? `-${Prefix}${K & string}`
+    : `${Prefix}-${K & string}`]: string;
+};

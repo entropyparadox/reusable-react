@@ -1,27 +1,49 @@
 import React, { FC, TextareaHTMLAttributes } from 'react';
 import { useId } from 'react-id-generator';
+import { TW, TWProperties } from '../tailwind/tw';
 import { Label } from './Label';
 
 interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
+  tw?: TWProperties;
+  twLabel?: TWProperties;
 }
 
-export const TextArea: FC<TextAreaProps> = ({ label, ...props }) => {
+export const TextArea: FC<TextAreaProps> = ({
+  label,
+  tw = {},
+  twLabel = {},
+  ...props
+}) => {
   const [htmlId] = useId(1, 'textarea');
 
+  const defaultTW = new TW({
+    borderColor: 'border-gray-200',
+    borderRadius: 'rounded-md',
+    borderWidth: 'border',
+    display: 'block',
+    height: 'h-48',
+    paddingX: 'px-4',
+    paddingY: 'py-2',
+    placeholderColor: 'placeholder-gray-400',
+    width: 'w-full',
+    disabled: {
+      backgroundColor: 'bg-gray-100',
+      color: 'text-gray-400',
+    },
+    focus: {
+      borderColor: 'border-brand-1',
+      ring: 'ring-0',
+    },
+  }).merge(tw);
+
   const textarea = (
-    <textarea
-      {...props}
-      id={htmlId}
-      className="block px-4 w-full h-48 py-2
-                 border-gray-200 rounded-md sm:text-sm
-                 focus:ring-0 focus:border-brand-1 placeholder-gray-400"
-    />
+    <textarea id={htmlId} className={defaultTW.toClassName()} {...props} />
   );
 
   return label ? (
     <div>
-      {label && <Label text={label} htmlFor={htmlId} />}
+      {label && <Label text={label} htmlFor={htmlId} tw={twLabel} />}
       {textarea}
     </div>
   ) : (

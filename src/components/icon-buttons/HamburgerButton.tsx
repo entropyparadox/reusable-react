@@ -6,5 +6,5 @@ interface HamburgerButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
 export const HamburgerButton: FC<HamburgerButtonProps> = ({ ...props }) => {
-  return <IconButton {...props} icon={<HamburgerIcon />} />;
+  return <IconButton icon={<HamburgerIcon />} {...props} />;
 };

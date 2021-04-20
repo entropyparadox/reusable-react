@@ -15,27 +15,22 @@ export const Chip: FC<ChipProps> = ({
   twSelected = {},
   ...props
 }) => {
-  const defaultTW = new TW(
-    {
-      backgroundColor: 'bg-gray-100',
-      borderRadius: 'rounded-full',
-      color: 'text-gray-800',
-      fontSize: 'text-sm',
-      paddingX: 'px-4',
-      paddingY: 'py-2',
-      whiteSpace: 'whitespace-normal',
-    },
-    tw,
-  );
+  const defaultTW = new TW({
+    backgroundColor: 'bg-gray-100',
+    borderRadius: 'rounded-full',
+    color: 'text-gray-800',
+    fontSize: 'text-sm',
+    paddingX: 'px-4',
+    paddingY: 'py-2',
+    whiteSpace: 'whitespace-normal',
+  }).merge(tw);
 
-  const selectedTW = new TW(
-    defaultTW,
-    {
+  const selectedTW = new TW(defaultTW)
+    .merge({
       backgroundColor: 'bg-brand-1',
       color: 'text-white',
-    },
-    twSelected,
-  );
+    })
+    .merge(twSelected);
 
   return (
     <button

@@ -1,17 +1,13 @@
 import React, { ButtonHTMLAttributes, FC } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Color } from '../types/color';
-import { Rounded } from '../types/rounded';
+import { TW, TWProperties } from '../tailwind/tw';
 
 export interface BarButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
   to?: string;
   variant?: 'flat' | 'outlined';
-  height?: 'h-13' | 'h-12' | 'h-11' | 'h-8';
-  rounded?: Rounded;
-  fontSize?: 'text-xs' | 'text-sm' | 'text-base';
-  theme?: Color;
+  tw?: TWProperties;
 }
 
 export const Button: FC<BarButtonProps> = ({
@@ -19,36 +15,34 @@ export const Button: FC<BarButtonProps> = ({
   text,
   to,
   variant = 'flat',
-  height = 'h-13',
-  rounded = 'rounded-lg',
-  fontSize = 'text-base',
-  theme = 'brand-1',
+  tw = {},
   onClick,
   ...props
 }) => {
   const history = useHistory();
 
-  let border = variant === 'outlined' ? `border border-${theme}` : 'border-0';
-  let backgroundColor = variant === 'flat' ? `bg-${theme}` : 'bg-white';
-  let textColor = variant === 'flat' ? 'text-white' : `text-${theme}`;
-  let disabledBackgroundColor =
-    variant === 'flat' ? 'bg-gray-300' : backgroundColor;
-  let disabledTextColor = variant === 'flat' ? 'text-white' : 'text-gray-300';
-
-  if (theme === 'gray-50') {
-    textColor = 'text-gray-800';
-  }
-  if (theme === 'kakao') {
-    backgroundColor = 'bg-kakao-1';
-    textColor = 'text-kakao-2';
-  }
+  const defaultTW = new TW({
+    backgroundColor: variant === 'flat' ? 'bg-brand-1' : 'bg-white',
+    borderColor: 'border-brand-1',
+    borderRadius: 'rounded-lg',
+    borderWidth: variant === 'flat' ? 'border-0' : 'border',
+    color: variant === 'flat' ? 'text-white' : 'text-brand-1',
+    fontSize: 'text-base',
+    fontWeight: 'font-bold',
+    height: 'h-13',
+    paddingX: 'px-6',
+    disabled: {
+      backgroundColor: variant === 'flat' ? 'bg-gray-300' : 'bg-white',
+      borderColor: 'border-gray-300',
+      color: variant === 'flat' ? 'text-white' : 'text-gray-300',
+    },
+  }).merge(tw);
 
   return (
     <button
-      {...props}
-      className={`px-6 ${height} ${border} ${rounded} ${backgroundColor} font-bold ${fontSize} ${textColor}
-                  disabled:border-gray-300 disabled:${disabledBackgroundColor} disabled:${disabledTextColor}`}
+      className={defaultTW.toClassName()}
       onClick={to ? () => history.push(to) : onClick}
+      {...props}
     >
       {text ?? children}
     </button>
