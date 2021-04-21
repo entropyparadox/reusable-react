@@ -7,12 +7,14 @@ interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   tw?: TWProperties;
   twLabel?: TWProperties;
+  twOuter?: TWProperties;
 }
 
 export const Checkbox: FC<CheckboxProps> = ({
   label,
   tw = {},
   twLabel = {},
+  twOuter = {},
   ...props
 }) => {
   const [htmlId] = useId(1, 'checkbox');
@@ -25,8 +27,14 @@ export const Checkbox: FC<CheckboxProps> = ({
     width: 'w-4',
   }).merge(tw);
 
+  const outerTW = new TW({
+    alignItems: 'items-center',
+    display: 'flex',
+    spaceX: 'space-x-2',
+  }).merge(twOuter);
+
   return (
-    <div className="flex items-center space-x-2">
+    <div className={outerTW.toClassName()}>
       <input
         id={htmlId}
         type="checkbox"

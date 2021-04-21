@@ -1,36 +1,65 @@
 import React, { ButtonHTMLAttributes, FC } from 'react';
-import { Color } from '../types/color';
+import { TW, TWProperties } from '../tailwind/tw';
 
 interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
+  active?: boolean;
   full?: boolean;
-  theme?: Color;
-  active: boolean;
-  fontSize?: 'text-sm' | 'text-base' | 'text-lg' | 'text-xl';
+  twInner?: TWProperties;
+  twInnerActive?: TWProperties;
+  twOuter?: TWProperties;
+  twOuterActive?: TWProperties;
 }
 
 export const Tab: FC<TabProps> = ({
   text,
+  active = false,
   full = false,
-  theme = 'brand-1',
-  active,
-  fontSize = 'text-sm',
+  twInner = {},
+  twOuter = {},
+  twInnerActive = {},
+  twOuterActive = {},
   ...props
 }) => {
-  const flex = full ? 'flex-1' : '';
-  const padding = full ? '' : 'px-2';
-  const border = active ? 'border-b-2' : '';
-  const bold = active ? 'font-bold' : '';
-  const textColor = active ? `text-${theme}` : 'text-gray-500';
+  const outerTW = new TW({
+    alignItems: 'items-end',
+    display: 'flex',
+    flex: full ? 'flex-1' : undefined,
+    justifyContent: 'justify-center',
+    minWidth: 'min-w-max',
+    paddingX: full ? undefined : 'px-2',
+  }).merge(twOuter);
+
+  const activeOuterTW = new TW(outerTW)
+    .merge({
+      color: 'text-brand-1',
+      fontWeight: 'font-bold',
+    })
+    .merge(twOuterActive);
+
+  const innerTW = new TW({
+    alignItems: 'items-center',
+    color: 'text-gray-500',
+    display: 'flex',
+    fontSize: 'text-sm',
+    height: 'h-10',
+    paddingX: 'px-2',
+  }).merge(twInner);
+
+  const activeInnerTW = new TW(innerTW)
+    .merge({
+      borderColor: 'border-brand-1',
+      borderWidth: 'border-b-2',
+    })
+    .merge(twInnerActive);
 
   return (
     <button
+      className={active ? activeOuterTW.toClassName() : outerTW.toClassName()}
       {...props}
-      className={`${flex} flex justify-center min-w-max items-end ${padding}`}
     >
       <span
-        className={`flex items-center px-2 h-10 ${border} border-${theme}
-                    ${bold} ${fontSize} ${textColor}`}
+        className={active ? activeInnerTW.toClassName() : innerTW.toClassName()}
       >
         {text}
       </span>

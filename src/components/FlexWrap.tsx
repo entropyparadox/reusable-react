@@ -1,8 +1,25 @@
-import React, { Children, cloneElement, FC, isValidElement } from 'react';
+import React, {
+  Children,
+  cloneElement,
+  FC,
+  HTMLAttributes,
+  isValidElement,
+} from 'react';
+import { TW, TWProperties } from '../tailwind/tw';
 
-export const FlexWrap: FC = ({ children }) => {
+export interface FlexWrapProps extends HTMLAttributes<HTMLDivElement> {
+  tw?: TWProperties;
+}
+
+export const FlexWrap: FC<FlexWrapProps> = ({ children, tw = {} }) => {
+  const defaultTW = new TW({
+    display: 'flex',
+    flexWrap: 'flex-wrap',
+    margin: '-m-1',
+  }).merge(tw);
+
   return (
-    <div className="flex flex-wrap -m-1">
+    <div className={defaultTW.toClassName()}>
       {Children.map(children, (child) => {
         if (isValidElement(child)) {
           return cloneElement(child, { style: { margin: '0.25rem' } });

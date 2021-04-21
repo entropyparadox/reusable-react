@@ -1,29 +1,34 @@
 import React, { FC, HTMLAttributes } from 'react';
+import { TW, TWProperties } from '../tailwind/tw';
 
 interface TabsProps extends HTMLAttributes<HTMLElement> {
   sticky?: boolean;
-  padding?: 'p-0' | 'px-3';
-  full?: boolean;
-  height?: 'h-10' | 'h-16' | 'h-20';
-  borderless?: boolean;
+  tw?: TWProperties;
 }
 
 export const Tabs: FC<TabsProps> = ({
   children,
-  full = false,
   sticky = false,
-  padding = 'p-0',
-  height = 'h-10',
-  borderless = false,
+  tw = {},
+  ...props
 }) => {
-  const position = sticky ? 'sticky top-fixed-top z-50' : '';
-  const border = borderless ? 'border-0' : 'border-b';
-  const width = full ? 'w-full' : '';
+  const defaultTW = new TW({
+    backgroundColor: 'bg-white',
+    borderWidth: 'border-b',
+    display: 'flex',
+    height: 'h-10',
+    overflowX: 'overflow-x-auto',
+    padding: 'p-0',
+    position: sticky ? 'sticky' : undefined,
+    top: sticky ? 'top-fixed-top' : undefined,
+    zIndex: sticky ? 'z-50' : undefined,
+  }).merge(tw);
 
   return (
     <nav
-      className={`${position} ${width} flex overflow-x-auto ${padding} ${height} ${border} bg-white`}
+      className={defaultTW.toClassName()}
       style={{ msOverflowStyle: 'none', scrollbarWidth: 'none' }}
+      {...props}
     >
       {children}
     </nav>

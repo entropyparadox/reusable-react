@@ -3,16 +3,16 @@ import { TW, TWProperties } from '../tailwind/tw';
 
 interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
-  selected?: boolean;
+  active?: boolean;
   tw?: TWProperties;
-  twSelected?: TWProperties;
+  twActive?: TWProperties;
 }
 
 export const Chip: FC<ChipProps> = ({
   text,
-  selected = false,
+  active = false,
   tw = {},
-  twSelected = {},
+  twActive = {},
   ...props
 }) => {
   const defaultTW = new TW({
@@ -25,16 +25,16 @@ export const Chip: FC<ChipProps> = ({
     whiteSpace: 'whitespace-normal',
   }).merge(tw);
 
-  const selectedTW = new TW(defaultTW)
+  const activeTW = new TW(defaultTW)
     .merge({
       backgroundColor: 'bg-brand-1',
       color: 'text-white',
     })
-    .merge(twSelected);
+    .merge(twActive);
 
   return (
     <button
-      className={selected ? selectedTW.toClassName() : defaultTW.toClassName()}
+      className={active ? activeTW.toClassName() : defaultTW.toClassName()}
       {...props}
     >
       {text}

@@ -2,26 +2,35 @@ import React, { FC, HTMLAttributes } from 'react';
 import { TW, TWProperties } from '../tailwind/tw';
 
 interface HorizontalScrollViewProps extends HTMLAttributes<HTMLDivElement> {
-  tw?: TWProperties;
+  twInner?: TWProperties;
+  twOuter?: TWProperties;
 }
 
 export const HorizontalScrollView: FC<HorizontalScrollViewProps> = ({
   children,
-  tw = {},
+  twInner = {},
+  twOuter = {},
   ...props
 }) => {
-  const defaultTW = new TW({
+  const innerTW = new TW({
+    alignItems: 'items-center',
+    display: 'flex',
+    marginX: 'mx-5',
+    spaceX: 'space-x-2',
+  }).merge(twInner);
+
+  const outerTW = new TW({
     overflowX: 'overflow-x-auto',
-  }).merge(tw);
+  }).merge(twOuter);
 
   return (
     <div
-      className={defaultTW.toClassName()}
+      className={outerTW.toClassName()}
       style={{ msOverflowStyle: 'none', scrollbarWidth: 'none' }}
       {...props}
     >
       <div className="inline-block">
-        <ul className="flex items-center space-x-2 mx-5">{children}</ul>
+        <ul className={innerTW.toClassName()}>{children}</ul>
       </div>
     </div>
   );

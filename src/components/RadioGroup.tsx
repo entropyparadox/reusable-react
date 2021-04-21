@@ -17,6 +17,7 @@ interface RadioGroupProps extends HTMLAttributes<HTMLDivElement> {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   tw?: TWProperties;
   twLabel?: TWProperties;
+  twOuter?: TWProperties;
 }
 
 export const RadioGroup: FC<RadioGroupProps> = ({
@@ -26,6 +27,7 @@ export const RadioGroup: FC<RadioGroupProps> = ({
   onChange,
   tw = {},
   twLabel = {},
+  twOuter = {},
   ...props
 }) => {
   const [name] = useId(1, 'radiogroup');
@@ -35,8 +37,10 @@ export const RadioGroup: FC<RadioGroupProps> = ({
     flexDirection: 'flex-col',
   }).merge(tw);
 
+  const outerTW = new TW({}).merge(twOuter);
+
   return (
-    <div>
+    <div className={outerTW.toClassName()}>
       {label && <Label text={label} tw={twLabel} />}
       <div className={defaultTW.toClassName()} {...props}>
         {Children.map(children, (child) => {

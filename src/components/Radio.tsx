@@ -8,6 +8,7 @@ interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
   labelProps?: LabelHTMLAttributes<HTMLLabelElement>;
   tw?: TWProperties;
   twLabel?: TWProperties;
+  twOuter?: TWProperties;
 }
 
 export const Radio: FC<RadioProps> = ({
@@ -15,6 +16,7 @@ export const Radio: FC<RadioProps> = ({
   labelProps = {},
   tw = {},
   twLabel = {},
+  twOuter = {},
   ...props
 }) => {
   const [htmlId] = useId(1, 'radio');
@@ -31,8 +33,14 @@ export const Radio: FC<RadioProps> = ({
     margin: 'm-0',
   }).merge(twLabel);
 
+  const outerTW = new TW({
+    alignItems: 'items-center',
+    display: 'flex',
+    spaceX: 'space-x-2',
+  }).merge(twOuter);
+
   return (
-    <div className="flex items-center space-x-2">
+    <div className={outerTW.toClassName()}>
       <input
         id={htmlId}
         type="radio"

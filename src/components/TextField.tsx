@@ -9,6 +9,7 @@ interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   tw?: TWProperties;
   twLabel?: TWProperties;
   twFeedback?: TWProperties;
+  twOuter?: TWProperties;
 }
 
 export const TextField: FC<TextFieldProps> = ({
@@ -18,6 +19,7 @@ export const TextField: FC<TextFieldProps> = ({
   tw = {},
   twLabel = {},
   twFeedback = {},
+  twOuter = {},
   ...props
 }) => {
   const [htmlId] = useId(1, 'textfield');
@@ -46,6 +48,8 @@ export const TextField: FC<TextFieldProps> = ({
     fontSize: 'text-sm',
   }).merge(twFeedback);
 
+  const outerTW = new TW({}).merge(twOuter);
+
   const input = (
     <input
       id={htmlId}
@@ -56,7 +60,7 @@ export const TextField: FC<TextFieldProps> = ({
   );
 
   return label ? (
-    <div>
+    <div className={outerTW.toClassName()}>
       {label && <Label text={label} htmlFor={htmlId} tw={twLabel} />}
       {input}
       {feedback && <span className={feedbackTW.toClassName()}>{feedback}</span>}

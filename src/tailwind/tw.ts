@@ -13,6 +13,8 @@ import {
   margin,
   maxHeight,
   maxWidth,
+  minHeight,
+  minWidth,
   outline,
   padding,
   space,
@@ -107,6 +109,7 @@ export type FlexDirection =
   | 'flex-row-reverse'
   | 'flex-col'
   | 'flex-col-reverse';
+export type FlexWrap = 'flex-wrap' | 'flex-wrap-reverse' | 'flex-nowrap';
 export type FontSize = `text-${KnownKeys<typeof fontSize>}`;
 export type FontWeight = `font-${keyof typeof fontWeight}`;
 export type Height =
@@ -137,6 +140,8 @@ export type MaxHeight =
 export type MaxWidth =
   | `max-w-${keyof typeof maxWidth}`
   | `max-w-${keyof typeof reusableTheme.maxWidth}`;
+export type MinHeighet = `min-h-${keyof typeof minHeight}`;
+export type MinWidth = `min-w-${keyof typeof minWidth}`;
 export type Outline = `outline-${keyof typeof outline}`;
 export type Overflow = `overflow-${overflow}`;
 export type OverflowX = `overflow-x-${overflow}`;
@@ -195,6 +200,7 @@ export class TWProperties {
   fill?: Fill;
   flex?: Flex;
   flexDirection?: FlexDirection;
+  flexWrap?: FlexWrap;
   fontSize?: FontSize;
   fontWeight?: FontWeight;
   height?: Height;
@@ -210,6 +216,8 @@ export class TWProperties {
   marginY?: MarginY;
   maxHeight?: MaxHeight;
   maxWidth?: MaxWidth;
+  minHeight?: MinHeighet;
+  minWidth?: MinWidth;
   outline?: Outline;
   overflow?: Overflow;
   overflowX?: OverflowX;

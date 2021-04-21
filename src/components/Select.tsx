@@ -8,6 +8,7 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   placeholder?: string;
   tw?: TWProperties;
   twLabel?: TWProperties;
+  twOuter?: TWProperties;
 }
 
 export const Select: FC<SelectProps> = ({
@@ -16,6 +17,7 @@ export const Select: FC<SelectProps> = ({
   children,
   tw = {},
   twLabel = {},
+  twOuter = {},
   ...props
 }) => {
   const [htmlId] = useId(1, 'select');
@@ -40,8 +42,10 @@ export const Select: FC<SelectProps> = ({
     },
   }).merge(tw);
 
+  const outerTW = new TW({}).merge(twOuter);
+
   return (
-    <div>
+    <div className={outerTW.toClassName()}>
       {label && <Label text={label} htmlFor={htmlId} tw={twLabel} />}
       <select id={htmlId} className={defaultTW.toClassName()} {...props}>
         {placeholder ? (

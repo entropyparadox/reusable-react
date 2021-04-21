@@ -7,12 +7,14 @@ interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
   tw?: TWProperties;
   twLabel?: TWProperties;
+  twOuter?: TWProperties;
 }
 
 export const TextArea: FC<TextAreaProps> = ({
   label,
   tw = {},
   twLabel = {},
+  twOuter = {},
   ...props
 }) => {
   const [htmlId] = useId(1, 'textarea');
@@ -37,12 +39,14 @@ export const TextArea: FC<TextAreaProps> = ({
     },
   }).merge(tw);
 
+  const outerTW = new TW({}).merge(twOuter);
+
   const textarea = (
     <textarea id={htmlId} className={defaultTW.toClassName()} {...props} />
   );
 
   return label ? (
-    <div>
+    <div className={outerTW.toClassName()}>
       {label && <Label text={label} htmlFor={htmlId} tw={twLabel} />}
       {textarea}
     </div>
