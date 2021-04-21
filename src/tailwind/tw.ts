@@ -268,7 +268,14 @@ export class TW extends TWProperties {
       .map((key) =>
         ['disabled', 'focus'].includes(key)
           ? Object.keys(this[key as keyof TW] as TWProperties)
-              .map((key) => `${key}:${this[key as keyof TWProperties]}`)
+              .map(
+                (key2) =>
+                  `${key}:${
+                    (this[key as keyof TW] as TWProperties)[
+                      key2 as keyof TWProperties
+                    ]
+                  }`,
+              )
               .join(' ')
           : (this[key as keyof TWProperties] as string),
       )

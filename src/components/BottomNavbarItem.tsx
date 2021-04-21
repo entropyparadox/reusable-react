@@ -5,19 +5,25 @@ interface BottomNavbarItemProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: FC<SVGProps<SVGSVGElement>>;
   label?: string;
-  active: boolean;
+  active?: boolean;
   tw?: TWProperties;
+  twActive?: TWProperties;
   twIcon?: TWProperties;
+  twIconActive?: TWProperties;
   twLabel?: TWProperties;
+  twLabelActive?: TWProperties;
 }
 
 export const BottomNavbarItem: FC<BottomNavbarItemProps> = ({
   icon: Icon,
   label,
-  active,
+  active = false,
   tw = {},
+  twActive = {},
   twIcon = {},
+  twIconActive = {},
   twLabel = {},
+  twLabelActive = {},
   ...props
 }) => {
   const defaultTW = new TW({
@@ -33,10 +39,16 @@ export const BottomNavbarItem: FC<BottomNavbarItemProps> = ({
     },
   }).merge(tw);
 
+  const activeTW = new TW(defaultTW).merge(twActive);
+
   const iconTW = new TW({
     color: 'text-gray-300',
     fill: 'fill-current',
   }).merge(twIcon);
+
+  const activeIconTW = new TW(iconTW)
+    .merge({ color: 'text-brand-1' })
+    .merge(twIconActive);
 
   const labelTW = new TW({
     color: 'text-gray-500',
@@ -44,10 +56,27 @@ export const BottomNavbarItem: FC<BottomNavbarItemProps> = ({
     fontWeight: 'font-medium',
   }).merge(twLabel);
 
+  const activeLabelTW = new TW(labelTW)
+    .merge({ color: 'text-brand-1' })
+    .merge(twLabelActive);
+
   return (
-    <button className={defaultTW.toClassName()} {...props}>
-      <Icon className={iconTW.toClassName()} />
-      {label ?? <span className={labelTW.toClassName()}>{label}</span>}
+    <button
+      className={active ? activeTW.toClassName() : defaultTW.toClassName()}
+      {...props}
+    >
+      <Icon
+        className={active ? activeIconTW.toClassName() : iconTW.toClassName()}
+      />
+      {label && (
+        <span
+          className={
+            active ? activeLabelTW.toClassName() : labelTW.toClassName()
+          }
+        >
+          {label}
+        </span>
+      )}
     </button>
   );
 };
