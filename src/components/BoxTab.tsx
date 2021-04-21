@@ -1,6 +1,5 @@
 import React, { ButtonHTMLAttributes, FC } from 'react';
 import { TW, TWProperties } from '../tailwind/tw';
-import { Color } from '../types/color';
 
 interface BoxTabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;

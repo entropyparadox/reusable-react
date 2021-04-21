@@ -1,12 +1,10 @@
 import React, { ButtonHTMLAttributes, FC, SVGProps } from 'react';
 import { TW, TWProperties } from '../tailwind/tw';
-import { Color } from '../types/color';
 
 interface BottomNavbarItemProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: FC<SVGProps<SVGSVGElement>>;
   label?: string;
-  theme?: Color;
   active: boolean;
   tw?: TWProperties;
   twIcon?: TWProperties;
@@ -16,7 +14,6 @@ interface BottomNavbarItemProps
 export const BottomNavbarItem: FC<BottomNavbarItemProps> = ({
   icon: Icon,
   label,
-  theme = 'brand-1',
   active,
   tw = {},
   twIcon = {},

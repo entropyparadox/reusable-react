@@ -247,17 +247,19 @@ export class TWProperties {
 }
 
 export class TW extends TWProperties {
-  disabled?: TWProperties;
-  focus?: TWProperties;
+  disabled?: TWProperties = {};
+  focus?: TWProperties = {};
 
-  constructor({ disabled, ...properties }: Partial<TW>) {
+  constructor({ disabled, focus, ...properties }: Partial<TW>) {
     super(properties);
     Object.assign(this.disabled, disabled);
+    Object.assign(this.focus, focus);
   }
 
-  merge({ disabled, ...properties }: Partial<TW>) {
+  merge({ disabled, focus, ...properties }: Partial<TW>) {
     Object.assign(this, properties);
     Object.assign(this.disabled, disabled);
+    Object.assign(this.focus, focus);
     return this;
   }
 
