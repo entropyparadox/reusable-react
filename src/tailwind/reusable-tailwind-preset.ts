@@ -19,8 +19,8 @@ export const reusableTailwindPreset = {
         'kakao-2': '#46272a',
       },
       spacing: {
-        13: '3.25rem',
-        18: '4.5rem',
+        '13': '3.25rem',
+        '18': '4.5rem',
         '1/2': '50%',
         '1/3': '33.333333%',
         '2/3': '66.666667%',
