@@ -184,7 +184,7 @@ export type ZIndex =
   | `z-${keyof typeof zIndex}`
   | NegativeAwareKeyOf<typeof reusableTheme.zIndex, 'z'>;
 
-export class TWProperties {
+export class TWCoreProperties {
   alignItems?: AlignItems;
   appearance?: Appearance;
   backgroundColor?: BackgroundColor;
@@ -240,20 +240,17 @@ export class TWProperties {
   whiteSpace?: WhiteSpace;
   width?: Width;
   zIndex?: ZIndex;
+}
 
-  constructor(properties: TWProperties) {
-    Object.assign(this, properties);
-  }
+export class TWProperties extends TWCoreProperties {
+  disabled?: TWCoreProperties = {};
+  focus?: TWCoreProperties = {};
 }
 
 export class TW extends TWProperties {
-  disabled?: TWProperties = {};
-  focus?: TWProperties = {};
-
-  constructor({ disabled, focus, ...properties }: Partial<TW>) {
-    super(properties);
-    Object.assign(this.disabled, disabled);
-    Object.assign(this.focus, focus);
+  constructor(properties: Partial<TW>) {
+    super();
+    this.merge(properties);
   }
 
   merge({ disabled, focus, ...properties }: Partial<TW>) {
