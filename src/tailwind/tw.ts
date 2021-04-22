@@ -245,6 +245,7 @@ export class TWCoreProperties {
 export class TWProperties extends TWCoreProperties {
   disabled?: TWCoreProperties = {};
   focus?: TWCoreProperties = {};
+  focusWithin?: TWCoreProperties = {};
 }
 
 export class TW extends TWProperties {
@@ -263,11 +264,11 @@ export class TW extends TWProperties {
   toClassName() {
     return Object.keys(this)
       .map((key) =>
-        ['disabled', 'focus'].includes(key)
+        ['disabled', 'focus', 'focusWithin'].includes(key)
           ? Object.keys(this[key as keyof TW] as TWProperties)
               .map(
                 (key2) =>
-                  `${key}:${
+                  `${kebabize(key)}:${
                     (this[key as keyof TW] as TWProperties)[
                       key2 as keyof TWProperties
                     ]
@@ -278,4 +279,15 @@ export class TW extends TWProperties {
       )
       .join(' ');
   }
+}
+
+function kebabize(value: string) {
+  return value
+    .split('')
+    .map((letter, i) => {
+      return letter.toUpperCase() === letter
+        ? `${i !== 0 ? '-' : ''}${letter.toLowerCase()}`
+        : letter;
+    })
+    .join('');
 }

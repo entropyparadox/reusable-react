@@ -32,6 +32,7 @@ export const BottomNavbarItem: FC<BottomNavbarItemProps> = ({
     flex: 'flex-1',
     flexDirection: 'flex-col',
     height: 'h-12',
+    justifyContent: 'justify-center',
     outline: 'outline-none',
     focus: {
       outline: 'outline-none',

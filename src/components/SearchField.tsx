@@ -1,35 +1,63 @@
 import React, { FC, InputHTMLAttributes, useRef } from 'react';
 import { ReactComponent as SearchCloseIcon } from '../assets/images/icon-search-close.svg';
 import { ReactComponent as SearchIcon } from '../assets/images/icon-search.svg';
+import { TW, TWProperties } from '../tailwind/tw';
 import { IconButton } from './IconButton';
 
 interface SearchFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   onSearch?: () => void;
+  tw?: TWProperties;
+  twOuter?: TWProperties;
 }
 
 export const SearchField: FC<SearchFieldProps> = ({
-  onSearch = () => {},
   value,
-  onChange,
+  onSearch = () => {},
+  tw = {},
+  twOuter = {},
   ...props
 }) => {
   const input = useRef<HTMLInputElement>(null);
 
+  const defaultTW = new TW({
+    flex: 'flex-1',
+    fontSize: 'text-sm',
+    placeholderColor: 'placeholder-gray-400',
+    focus: {
+      ring: 'ring-0',
+    },
+  }).merge(tw);
+
+  const outerTW = new TW({
+    alignItems: 'items-center',
+    borderColor: 'border-gray-200',
+    borderRadius: 'rounded-full',
+    borderWidth: 'border',
+    display: 'flex',
+    height: 'h-10',
+    paddingX: 'px-4',
+    width: 'w-full',
+    focusWithin: {
+      borderColor: 'border-brand-1',
+    },
+  }).merge(twOuter);
+
   return (
     <form
-      className="flex items-center px-4 w-full h-10
-                 rounded-full border border-gray-200 focus-within:border-brand-1"
+      className={outerTW.toClassName()}
       onSubmit={(e) => {
         e.preventDefault();
         onSearch();
       }}
     >
+      <div className="flex justify-center items-center -ml-2 w-10 h-10">
+        <SearchIcon />
+      </div>
       <input
-        {...props}
         ref={input}
-        className="flex-1 text-sm outline-none focus:outline-none focus:ring-0 placeholder-gray-400"
+        className={defaultTW.toClassName()}
         value={value}
-        onChange={onChange}
+        {...props}
       />
       {value && (
         <div className="flex justify-center items-center -mr-2 w-10 h-10">
