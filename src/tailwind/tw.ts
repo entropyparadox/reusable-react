@@ -171,6 +171,11 @@ export type Ring =
   | 'ring-8';
 export type SpaceX = NegativeAwareKeyOf<typeof space, 'space-x'>;
 export type SpaceY = NegativeAwareKeyOf<typeof space, 'space-y'>;
+export type TextAlign =
+  | 'text-left'
+  | 'text-center'
+  | 'text-right'
+  | 'text-justify';
 export type TextDecoration = 'underline' | 'line-through' | 'no-underline';
 export type Top = NegativeAwareKeyOf<typeof inset, 'top'> | 'top-fixed-top';
 export type WhiteSpace =
@@ -235,6 +240,7 @@ export class TWCoreProperties {
   ring?: Ring;
   spaceX?: SpaceX;
   spaceY?: SpaceY;
+  textAlign?: TextAlign;
   textDecoration?: TextDecoration;
   top?: Top;
   whiteSpace?: WhiteSpace;
