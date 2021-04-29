@@ -1,4 +1,4 @@
-import React, { FC, InputHTMLAttributes } from 'react';
+import React, { FC, InputHTMLAttributes, ReactHTMLElement } from 'react';
 import { useId } from 'react-id-generator';
 import { TW, TWProperties } from '../tailwind/tw';
 import { Label } from './Label';
@@ -10,6 +10,7 @@ interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   twLabel?: TWProperties;
   twFeedback?: TWProperties;
   twOuter?: TWProperties;
+  ref?: any;
 }
 
 export const TextField: FC<TextFieldProps> = ({
@@ -20,6 +21,7 @@ export const TextField: FC<TextFieldProps> = ({
   twLabel = {},
   twFeedback = {},
   twOuter = {},
+  ref,
   ...props
 }) => {
   const [htmlId] = useId(1, 'textfield');
@@ -55,6 +57,7 @@ export const TextField: FC<TextFieldProps> = ({
       id={htmlId}
       type={type}
       className={defaultTW.toClassName()}
+      ref={ref}
       {...props}
     />
   );
