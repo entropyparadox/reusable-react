@@ -7,6 +7,7 @@ interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   type?: string;
   label?: string;
   feedback?: string;
+  feedbackColor?: string;
   rounded?: Rounded;
 }
 
@@ -14,6 +15,7 @@ export const TextField: FC<TextFieldProps> = ({
   type = 'text',
   label,
   feedback,
+  feedbackColor = 'text-red-400',
   rounded = 'rounded-md',
   ...props
 }) => {
@@ -35,7 +37,9 @@ export const TextField: FC<TextFieldProps> = ({
     <div>
       {label && <Label text={label} htmlFor={htmlId} />}
       {input}
-      {feedback && <span className="text-red-400 text-sm">{feedback}</span>}
+      {feedback && (
+        <span className={`${feedbackColor} text-sm`}>{feedback}</span>
+      )}
     </div>
   ) : (
     input
