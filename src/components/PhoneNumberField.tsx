@@ -24,9 +24,7 @@ export const PhoneNumberField: FC<PhoneNumberFieldProps> = ({
   const [number2, setNumber2] = useState('');
   const [number3, setNumber3] = useState('');
   useEffect(() => {
-    const matched = value.match(
-      /([0-9]{3}|[0-9]{2})([0-9]{4}|[0-9]{3})([0-9]{4})/,
-    );
+    const matched = value.match(/([0-9]{1,3})([0-9]{1,4})?([0-9]{1,4})?/);
     setNumber1(matched?.[1] ?? '');
     setNumber2(matched?.[2] ?? '');
     setNumber3(matched?.[3] ?? '');
