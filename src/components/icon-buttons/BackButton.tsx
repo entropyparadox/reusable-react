@@ -12,7 +12,10 @@ export const BackButton: FC<BackButtonProps> = ({ onClick, ...props }) => {
     <IconButton
       data-cy="back"
       icon={<BackIcon />}
-      onClick={onClick ?? (() => history.goBack())}
+      onClick={
+        onClick ??
+        (() => (history.length > 1 ? history.goBack() : history.push('/')))
+      }
       {...props}
     />
   );
