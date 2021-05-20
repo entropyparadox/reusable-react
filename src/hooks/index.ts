@@ -111,9 +111,11 @@ export const useLoginWithApple = (onError?: (error: ApolloError) => void) => {
 export const useLogout = () => {
   const resetToken = useResetRecoilState(tokenState);
   const resetKakaoId = useResetRecoilState(kakaoIdState);
+  const resetAppleId = useResetRecoilState(appleIdState);
   return () => {
     resetToken();
     resetKakaoId();
+    resetAppleId();
   };
 };
 
