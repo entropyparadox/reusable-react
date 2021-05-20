@@ -25,6 +25,11 @@ export const kakaoIdState = atom<number | null>({
   default: null,
 });
 
+export const appleIdState = atom<string | null>({
+  key: 'appleIdState',
+  default: null,
+});
+
 interface AlertState {
   open: boolean;
   severity: 'error' | 'warning' | 'info' | 'success';

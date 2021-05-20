@@ -24,3 +24,12 @@ export const LoginWithKakao = gql`
     }
   }
 `;
+
+export const LoginWithApple = gql`
+  mutation LoginWithApple($identityToken: String!) {
+    loginWithApple(identityToken: $identityToken) {
+      token
+      appleId
+    }
+  }
+`;

@@ -2,8 +2,8 @@ import { ApolloError, useMutation } from '@apollo/client';
 import queryString from 'query-string';
 import { useLocation, useParams } from 'react-router';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
-import { Login, LoginWithKakao, Signup } from '../api';
-import { alertState, kakaoIdState, tokenState } from '../store';
+import { Login, LoginWithApple, LoginWithKakao, Signup } from '../api';
+import { alertState, appleIdState, kakaoIdState, tokenState } from '../store';
 
 export const useIdParam = () => {
   const params = useParams<{ id: string }>();
@@ -73,9 +73,7 @@ export const useLoginWithKakao = (onError?: (error: ApolloError) => void) => {
   });
 
   return (accessToken: string) =>
-    loginWithKakao({
-      variables: { accessToken },
-    });
+    loginWithKakao({ variables: { accessToken } });
 };
 
 export const useLoginWithKakaoWeb = (
@@ -90,6 +88,24 @@ export const useLoginWithKakaoWeb = (
         loginWithKakao(response.access_token);
       },
     });
+};
+
+export const useLoginWithApple = (onError?: (error: ApolloError) => void) => {
+  const setToken = useSetRecoilState(tokenState);
+  const setAppleId = useSetRecoilState(appleIdState);
+  const [loginWithApple] = useMutation(LoginWithApple, {
+    onCompleted: ({ loginWithApple: { token, appleId } }) => {
+      if (token) {
+        setToken(token);
+      } else {
+        setAppleId(appleId);
+      }
+    },
+    onError,
+  });
+
+  return (identityToken: string) =>
+    loginWithApple({ variables: { identityToken } });
 };
 
 export const useLogout = () => {
