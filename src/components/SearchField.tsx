@@ -2,7 +2,6 @@ import React, { FC, InputHTMLAttributes, useRef } from 'react';
 import { ReactComponent as SearchCloseIcon } from '../assets/images/icon-search-close.svg';
 import { ReactComponent as SearchIcon } from '../assets/images/icon-search.svg';
 import { TW, TWProperties } from '../tailwind/tw';
-import { IconButton } from './IconButton';
 
 interface SearchFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   onSearch?: () => void;
