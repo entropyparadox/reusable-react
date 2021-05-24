@@ -30,9 +30,11 @@ export const TopNavbar: FC<TopNavbarProps> = ({
       className={`${position} ${positionAdditional} z-50 flex items-center
                   px-2 h-fixed-top ${border} bg-${backgroundColor}`}
     >
-      <div className={`${leftFlex} flex items-center`}>{left}</div>
-      <h1 className="font-bold text-gray-800">{title}</h1>
-      <div className={`${rightFlex} flex flex-row-reverse items-center`}>
+      <div className={`${leftFlex} flex items-center min-w-0`}>{left}</div>
+      <h1 className="font-bold text-gray-800 min-w-0">{title}</h1>
+      <div
+        className={`${rightFlex} flex flex-row-reverse items-center min-w-0`}
+      >
         {right}
       </div>
     </nav>
