@@ -23,3 +23,6 @@ export const utcToLocalFromNow = (utc: string) =>
 
 export const utcToDaysFromNow = (utc: string) =>
   moment.utc(moment.utc(utc)).diff(new Date().toUTCString(), 'days');
+
+export const weekOfMonth = (utc: string) =>
+  moment.utc(utc).week() - moment.utc(utc).startOf('month').week() + 1;
